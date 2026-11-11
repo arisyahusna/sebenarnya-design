@@ -4,8 +4,14 @@ import { useEffect, useState } from 'react';
 import Logo from './Logo';
 import { navLinks } from '@/data/content';
 
+const languages = [
+  { code: 'EN', lang: 'en', name: 'English' },
+  { code: 'BM', lang: 'ms', name: 'Bahasa Melayu' },
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [lang, setLang] = useState('EN'); // UI state only; content is not translated yet
 
   // Close the mobile menu if the window grows back to desktop size
   useEffect(() => {
@@ -46,6 +52,22 @@ export default function Header() {
               ))}
             </ul>
           </nav>
+
+          {/* Language selector: visual only for now, no translation wired up */}
+          <div className="lang-switch" role="group" aria-label="Language">
+            {languages.map((l) => (
+              <button
+                key={l.code}
+                type="button"
+                lang={l.lang}
+                aria-label={l.name}
+                aria-pressed={lang === l.code}
+                onClick={() => setLang(l.code)}
+              >
+                {l.code}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </header>
