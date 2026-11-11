@@ -1,4 +1,5 @@
 import './global.css';
+import Chatbot from '@/components/Chatbot';
 
 const description =
   'Sebenarnya.my helps the public find verified information and official responses, explore news and updates, check claims, and submit information they are unsure about.';
@@ -25,7 +26,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* AIFA chatbot: floating on every page */}
+        <Chatbot />
+      </body>
     </html>
   );
 }

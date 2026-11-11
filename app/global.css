@@ -2821,3 +2821,269 @@ input::placeholder { color: var(--text); }
   .post-lead { font-size: 1.7rem; }
   .post-body h2 { font-size: 2.4rem; }
 }
+
+/* ==========================================================================
+   AIFA chatbot (floating, every page)
+   ========================================================================== */
+.aifa {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  font-size: 1.5rem;
+  line-height: 1.45;
+}
+
+.aifa-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 22px 0 18px;
+  border: none;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--red);
+  box-shadow: 0 8px 24px rgba(229, 28, 35, .35);
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.aifa-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(229, 28, 35, .45); }
+.aifa-toggle:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.aifa.open .aifa-toggle { width: 56px; padding: 0; justify-content: center; }
+
+.aifa-panel {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  height: min(580px, calc(100dvh - 120px));
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--bg);
+  box-shadow: 0 20px 60px rgba(21, 22, 24, .22), 0 0 0 1px rgba(21, 22, 24, .06);
+  transform-origin: bottom right;
+  animation: aifa-in .35s var(--ease);
+}
+
+.aifa-panel[hidden] { display: none; }
+
+@keyframes aifa-in {
+  from { opacity: 0; transform: translateY(12px) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.aifa-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  color: var(--white);
+  background: var(--dark);
+}
+
+.aifa-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--red);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.aifa-title { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.aifa-title strong { font-size: 1.6rem; }
+.aifa-title span { font-size: 1.3rem; opacity: .7; }
+
+.aifa-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.aifa-close:hover { background: rgba(255, 255, 255, .12); }
+
+.aifa-log {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--input-bg);
+}
+
+.aifa-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+}
+
+.aifa-msg p { margin: 0; }
+
+.aifa-msg.bot {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  background: var(--bg);
+}
+
+.aifa-msg.user {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  color: var(--white);
+  background: var(--red);
+}
+
+.aifa-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aifa-results a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--tag-bg);
+  transition: background .2s ease;
+}
+
+.aifa-results a:hover { background: var(--tag-hover); }
+
+.aifa-status {
+  align-self: flex-start;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--status);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.aifa-result-title { font-weight: 600; line-height: 1.35; }
+.aifa-result-date { font-size: 1.2rem; opacity: .6; }
+
+.aifa-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+.aifa-links a,
+.aifa-suggest button {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease;
+}
+
+.aifa-links a:hover,
+.aifa-suggest button:hover { border-color: var(--red); color: var(--red); }
+
+.aifa-typing { display: flex; gap: 4px; padding: 14px; }
+
+.aifa-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text);
+  opacity: .3;
+  animation: aifa-dot 1s infinite ease-in-out;
+}
+
+.aifa-typing span:nth-child(2) { animation-delay: .15s; }
+.aifa-typing span:nth-child(3) { animation-delay: .3s; }
+
+@keyframes aifa-dot {
+  0%, 80%, 100% { opacity: .3; transform: none; }
+  40% { opacity: .8; transform: translateY(-3px); }
+}
+
+.aifa-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 16px 0;
+  background: var(--bg);
+}
+
+.aifa-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 8px;
+  background: var(--bg);
+}
+
+.aifa-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--input-bg);
+  font-size: 1.5rem;
+}
+
+.aifa-form input::placeholder { color: var(--text); opacity: .5; }
+.aifa-form input:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+
+.aifa-form button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--red);
+  cursor: pointer;
+}
+
+.aifa-form button:disabled { opacity: .4; cursor: default; }
+
+.aifa-note {
+  margin: 0;
+  padding: 0 16px 12px;
+  background: var(--bg);
+  font-size: 1.1rem;
+  line-height: 1.4;
+  opacity: .6;
+}
+
+@media (max-width: 480px) {
+  .aifa { right: 16px; bottom: 16px; }
+  .aifa-panel { width: calc(100vw - 32px); height: calc(100dvh - 104px); }
+  .aifa-toggle { height: 52px; }
+  .aifa.open .aifa-toggle { width: 52px; }
+  .aifa-form input { font-size: 1.6rem; } /* 16px stops iOS zooming in on focus */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aifa-panel, .aifa-typing span { animation: none; }
+  .aifa-toggle { transition: none; }
+}
