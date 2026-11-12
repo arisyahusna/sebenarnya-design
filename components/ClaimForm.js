@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { withBase } from '@/lib/basePath';
 
 // "Lapor berita tular" form, shown as a pop-up on every page.
 // Any link pointing to CLAIM_HREF (header nav, footer, AIFA chatbot) opens it instead of navigating.
@@ -71,7 +72,7 @@ export default function ClaimForm() {
   // Open the form from any "Submit claim" link on the page
   useEffect(() => {
     const onClick = (e) => {
-      const link = e.target.closest?.(`a[href="${CLAIM_HREF}"]`);
+      const link = e.target.closest?.(`a[href="${withBase(CLAIM_HREF)}"]`);
       if (!link) return;
       e.preventDefault();
       open();

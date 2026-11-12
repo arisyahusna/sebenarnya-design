@@ -1,5 +1,6 @@
 import Logo from './Logo';
 import { footerColumns, socialLinks } from '@/data/content';
+import { withBase } from '@/lib/basePath';
 
 export default function Footer() {
   return (
@@ -38,7 +39,7 @@ export default function Footer() {
                 <ul>
                   {column.links.map((link) => (
                     <li key={link.label}>
-                      <a href={link.href}>{link.label}</a>
+                      <a href={withBase(link.href)}>{link.label}</a>
                     </li>
                   ))}
                 </ul>
@@ -47,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-copy">
-            &copy; 2023 <a href="/"> Malaysian Communications and Multimedia Commission</a>.
+            &copy; 2023 <a href={withBase('/')}> Malaysian Communications and Multimedia Commission</a>.
           </div>
         </div>
       </div>
