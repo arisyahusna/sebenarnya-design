@@ -16,10 +16,10 @@ const agency = {
 
 /* Header */
 export const navLinks = [
-  { label: 'Main', href: '/' },
-  { label: 'Check Fact', href: '/article/' },
-  { label: 'About Us', href: '/about-us/' },
-  { label: 'Submit Claim', href: '/submit-claim/' },
+  { label: 'Utama', href: '/' },
+  { label: 'Semak Fakta', href: '/article/' },
+  { label: 'Tentang Kami', href: '/about-us/' },
+  { label: 'Salur Kepada Kami', href: '/submit-claim/' },
 ];
 
 /* Stories carousel (latest social media posts) */
@@ -103,17 +103,17 @@ export const footerColumns = [
   {
     title: 'Explore',
     links: [
-      { label: 'Fact-Checks', href: '/check-fact/' },
+      { label: 'Semak Fakta', href: '/article/' },
       { label: 'AIFA', href: '/aifa/' },
-      { label: 'Submit a Claim', href: '/submit-claim/' },
+      { label: 'Salur Kepada Kami', href: '/submit-claim/' },
     ],
   },
 
   {
     title: 'Sebenarnya.my',
     links: [
-      { label: 'About Us', href: '/about-us/' },
-      { label: 'Contact', href: '/contact/' },
+      { label: 'Tentang Kami', href: '/about-us/' },
+      { label: 'Hubungi Kami', href: '/contact/' },
     ],
   },
 ];

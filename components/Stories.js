@@ -97,8 +97,8 @@ export default function Stories() {
     <section className="stories">
       <div className="stories-head">
         <small className="big-title stories-title">
-          Our Latest  <br/> <strong>Social Media</strong>
-          <span> Activities</span>
+          Aktiviti<br/> <strong>Sosial Media</strong>
+          <span> Terkini</span>
         </small>
       </div>
 

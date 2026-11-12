@@ -13,8 +13,7 @@ export default function Footer() {
               <Logo />
             </div>
             <p className="footer-text">
-              Sebenarnya.my helps the public find verified information and official responses, explore news and
-              updates, check claims, and submit information they are unsure about.
+              Sebenarnya.my membantu orang ramai mendapatkan maklumat sahih dan maklum balas rasmi, menyemak dakwaan yang tular serta mengikuti berita dan perkembangan terkini.
             </p>
           </div>
 
@@ -48,7 +47,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-copy">
-            &copy; 2026 <a href="/">Sebenarnya.my</a>.
+            &copy; 2023 <a href="/"> Malaysian Communications and Multimedia Commission</a>.
           </div>
         </div>
       </div>
