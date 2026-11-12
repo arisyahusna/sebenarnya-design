@@ -106,7 +106,7 @@ export default function Stories() {
         className="stories-viewport"
         ref={viewportRef}
         tabIndex={0}
-        aria-label="Our latest social media posts"
+        aria-label="Hantaran media sosial terkini kami"
         onKeyDown={handleKeyDown}
         onTouchStart={(e) => { touchStartX.current = e.changedTouches[0].screenX; }}
         onTouchEnd={handleTouchEnd}

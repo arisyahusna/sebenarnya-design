@@ -12,7 +12,7 @@ const languages = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState('EN'); // UI state only; content is not translated yet
+  const [lang, setLang] = useState('BM'); // UI state only; content is not translated yet
 
   // Close the mobile menu if the window grows back to desktop size
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Header() {
           </nav>
 
           {/* Language selector: visual only for now, no translation wired up */}
-          <div className="lang-switch" role="group" aria-label="Language">
+          <div className="lang-switch" role="group" aria-label="Bahasa">
             {languages.map((l) => (
               <button
                 key={l.code}

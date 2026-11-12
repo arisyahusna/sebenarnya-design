@@ -28,7 +28,7 @@ export default function Latest() {
         ))}
       </div>
       <div className="popular-more">
-        <Link className="btn" href="/article">View more</Link>
+        <Link className="btn" href="/article">Lihat lagi</Link>
       </div>
     </section>
   );

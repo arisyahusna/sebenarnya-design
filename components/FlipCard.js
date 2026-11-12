@@ -66,7 +66,7 @@ export default function FlipCard({ post }) {
           {/* <h3 className="flip-back-title">{post.title}</h3> */}
           <p className="flip-summary">{post.summary}</p>
           <Link ref={readRef} className="flip-read" href={post.href}>
-            Read more
+            Baca lagi
             <svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true">
               <path d="M1 6h11M8 2l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

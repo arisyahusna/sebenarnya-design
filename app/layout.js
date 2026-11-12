@@ -4,7 +4,7 @@ import ClaimForm from '@/components/ClaimForm';
 import { withBase } from '@/lib/basePath';
 
 const description =
-  'Sebenarnya.my helps the public find verified information and official responses, explore news and updates, check claims, and submit information they are unsure about.';
+  'Sebenarnya.my membantu orang ramai mendapatkan maklumat sahih dan maklum balas rasmi, mengikuti berita dan perkembangan terkini, menyemak dakwaan serta menyalurkan maklumat yang diragui.';
 
 export const metadata = {
   title: 'Sebenarnya.my',
@@ -27,7 +27,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="ms">
       <body>
         {children}
         {/* AIFA chatbot: floating on every page */}
