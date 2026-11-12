@@ -1,7 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { heroSlides as slides } from '@/data/content';
+import { heroSlides } from '@/data/content';
+import { articleHref, getArticle } from '@/lib/articles';
+
+// Each slide points at an article; it links to that article and falls back to its image
+const slides = heroSlides.map((s) => {
+  const article = getArticle(s.slug);
+  return { ...s, href: articleHref(article), image: s.image || article.image };
+});
 
 const COUNT = slides.length;
 const DELAY = 6000; // autoplay interval, matches the dot fill animation in global.css
@@ -146,7 +153,7 @@ export default function Carousel() {
       {/* Same container as other section headings, so it lines up with "Latest fact-checks" */}
       <div className="container carousel-head">
         <div className="section-head">
-          <small className="section-label big-title">Popular <span>fact-checks</span></small>
+          <small className="section-label big-title">Semakan Fakta <span>Popular</span></small>
         </div>
       </div>
       <div className="gal" ref={galRef} aria-roledescription="carousel" aria-label="Fokus utama">

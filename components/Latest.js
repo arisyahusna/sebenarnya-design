@@ -20,7 +20,7 @@ export default function Latest() {
   return (
     <section className="popular container">
       <div className="section-head">
-        <small className="section-label big-title">Latest <span>fact-checks</span></small>
+        <small className="section-label big-title">Semakan Fakta <span>Terkini</span></small>
       </div>
       <div className="popular-grid">
         {latest.map((post) => (

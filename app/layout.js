@@ -1,5 +1,6 @@
 import './global.css';
 import Chatbot from '@/components/Chatbot';
+import ClaimForm from '@/components/ClaimForm';
 
 const description =
   'Sebenarnya.my helps the public find verified information and official responses, explore news and updates, check claims, and submit information they are unsure about.';
@@ -30,6 +31,8 @@ export default function RootLayout({ children }) {
         {children}
         {/* AIFA chatbot: floating on every page */}
         <Chatbot />
+        {/* Submit-claim form: opens as a pop-up from any /submit-claim/ link */}
+        <ClaimForm />
       </body>
     </html>
   );

@@ -8,6 +8,9 @@ import { articleHref, formatDate } from '@/lib/articles';
 // AIFA chatbot: a floating assistant on every page.
 // Rule-based for now — it answers by searching the site's published fact-checks.
 // To connect a real AI service later, replace `getReply` with a call to an API route.
+// Any link pointing to AIFA_HREF (e.g. the footer "AIFA" link) opens the chat instead of navigating.
+
+export const AIFA_HREF = '/aifa/';
 
 const GREETING = {
   from: 'bot',
@@ -78,6 +81,19 @@ export default function Chatbot() {
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
+
+  // Open the chat from any "AIFA" link on the page
+  useEffect(() => {
+    const onClick = (e) => {
+      const link = e.target.closest?.(`a[href="${AIFA_HREF}"]`);
+      if (!link) return;
+      e.preventDefault();
+      setOpen(true);
+      inputRef.current?.focus(); // already open: still move focus to the input
+    };
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
 
   // Keep the newest message in view
   useEffect(() => {
