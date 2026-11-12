@@ -15,6 +15,14 @@ const DATE_OPTIONS = [
   { id: 'custom', label: 'Pilih tarikh' },
 ];
 
+// Result order. Titles compare in Malay so A–Z follows the alphabet, ignoring case.
+const SORT_OPTIONS = [
+  { id: 'newest', label: 'Terbaru dahulu', compare: (a, b) => b.date.localeCompare(a.date) },
+  { id: 'oldest', label: 'Terlama dahulu', compare: (a, b) => a.date.localeCompare(b.date) },
+  { id: 'az', label: 'Tajuk A–Z', compare: (a, b) => a.title.localeCompare(b.title, 'ms', { sensitivity: 'base' }) },
+  { id: 'za', label: 'Tajuk Z–A', compare: (a, b) => b.title.localeCompare(a.title, 'ms', { sensitivity: 'base' }) },
+];
+
 const pad = (n) => String(n).padStart(2, '0');
 
 // Local date as YYYY-MM-DD, so dates can be compared as plain strings
@@ -31,13 +39,14 @@ function dateBounds(range, from, to) {
   return { min: toISO(start) };
 }
 
-function filterArticles(query, category, range, from, to) {
+function filterArticles(query, category, range, from, to, sort) {
   const { min, max } = dateBounds(range, from, to);
+  const { compare } = SORT_OPTIONS.find((o) => o.id === sort) || SORT_OPTIONS[0];
   return articles
     .filter((a) => matchesQuery(a, query))
     .filter((a) => category === 'all' || a.status === category || a.categories.includes(category))
     .filter((a) => (!min || a.date >= min) && (!max || a.date <= max))
-    .sort((a, b) => b.date.localeCompare(a.date)); // newest first
+    .sort(compare);
 }
 
 export default function Articles() {
@@ -46,6 +55,7 @@ export default function Articles() {
   const [range, setRange] = useState('all');
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
+  const [sort, setSort] = useState('newest');
 
   // Filter bar scrolling: which arrows can be used
   const barRef = useRef(null);
@@ -85,7 +95,7 @@ export default function Articles() {
     window.history.replaceState(null, '', url);
   };
 
-  const list = filterArticles(query, category, range, from, to);
+  const list = filterArticles(query, category, range, from, to, sort);
 
   const reset = () => {
     changeQuery('');
@@ -93,6 +103,7 @@ export default function Articles() {
     setRange('all');
     setFrom('');
     setTo('');
+    setSort('newest');
   };
 
   return (
@@ -100,7 +111,7 @@ export default function Articles() {
       {/* Page heading for screen readers only */}
       <h1 className="sr-only">Artikel semakan fakta</h1>
 
-      {/* Keyword search + date filter */}
+      {/* Keyword search + date filter + sort order */}
       <div className="date-filter">
         <form className="article-search" role="search" onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="article-q" className="sr-only">Cari artikel</label>
@@ -117,6 +128,15 @@ export default function Articles() {
           <span className="sr-only">Tapis mengikut tarikh</span>
           <select value={range} onChange={(e) => setRange(e.target.value)}>
             {DATE_OPTIONS.map((o) => (
+              <option key={o.id} value={o.id}>{o.label}</option>
+            ))}
+          </select>
+        </label>
+
+        <label className="date-select">
+          <span className="sr-only">Susun mengikut</span>
+          <select value={sort} onChange={(e) => setSort(e.target.value)}>
+            {SORT_OPTIONS.map((o) => (
               <option key={o.id} value={o.id}>{o.label}</option>
             ))}
           </select>

@@ -2,7 +2,7 @@
 
 import { withBase } from '@/lib/basePath';
 
-const post = (name) => withBase(`/images/posts/sebenarnya-fc-${name}.jpg`);
+const post = (file) => withBase(`/images/posts/${file}`);
 
 const agency = {
   kpm: 'KPM (Kementerian Pendidikan Malaysia)',
@@ -20,7 +20,7 @@ const agency = {
 export const navLinks = [
   { label: 'Utama', href: '/' },
   { label: 'Semak Fakta', href: '/article/' },
-  { label: 'Tentang Kami', href: '/about-us/' },
+  /*{ label: 'Tentang Kami', href: '/about-us/' },*/
   { label: 'Salur Kepada Kami', href: '/submit-claim/' },
 ];
 
@@ -146,7 +146,7 @@ export const heroSlides = [
   {
     slug: 'amaran-hujan-lebat-pantai-timur-november',
     image: withBase('/images/carousel/hero-cuaca.jpg'),
-    eyebrow: 'Makluman | METMalaysia',
+    eyebrow: 'Waspada | METMalaysia',
     title: 'Hujan lebat tiga hari',
     titleEm: 'di Pantai Timur.',
     text: 'Amaran hujan lebat dari 12 hingga 14 November 2026. Ikuti kemas kini rasmi.',
@@ -199,7 +199,8 @@ export const partners = [
 // Filter bar, in display order. `dot` = coloured dot shown in the chip.
 export const articleCategories = [
   { id: 'palsu', label: 'Palsu', dot: '#e51c23' },
-  { id: 'penjelasan', label: 'Penjelasan', dot: '#314bff' },
+  { id: 'benar', label: 'Benar', dot: '#1d8a4e' },
+  { id: 'makluman', label: 'Makluman', dot: '#0071e3' },
   { id: 'waspada', label: 'Waspada', dot: '#f56300' },
   { id: 'bencana', label: 'Bencana' },
   { id: 'ekonomi', label: 'Ekonomi' },
@@ -218,12 +219,13 @@ export const articleCategories = [
 export const articleStatus = {
   palsu: { label: 'Palsu', color: '#e51c23' },
   makluman: { label: 'Makluman', color: '#0071e3' },
+  waspada: { label: 'Waspada', color: '#f56300' },
   benar: { label: 'Benar', color: '#1d8a4e' },
 };
 
 const agencyLogo = (name) => withBase(`/images/authors/agency-${name}.webp`);
 
-// `status` = card tag (palsu / makluman / benar)
+// `status` = card tag (palsu / makluman / benar / waspada)
 // `categories` = filter-bar ids this article also appears under
 // `date` = YYYY-MM-DD
 // `slug` = page address (/article/<slug>); `lead` + `explanation` = article body
@@ -234,7 +236,7 @@ export const articles = [
     slug: 'pautan-bantuan-tunai-whatsapp-palsu',
     lead: 'Satu mesej yang tular di WhatsApp mendakwa orang ramai boleh mendaftar untuk bantuan tunai melalui pautan yang dikongsi. Suruhanjaya Komunikasi dan Multimedia Malaysia (MCMC) mengesahkan mesej tersebut adalah palsu.',
     explanation: 'Pautan dalam mesej itu membawa kepada laman tiruan yang meminta nombor kad pengenalan dan butiran akaun bank. Pendaftaran bantuan kerajaan hanya dibuat melalui portal rasmi dan tidak pernah dihantar melalui mesej berantai.',
-    image: post('phone-sharing'),
+    image: post('fakechat.jpg'),
     alt: 'Dua orang menyemak mesej di telefon',
     status: 'palsu',
     categories: ['jenayah', 'kepenggunaan'],
@@ -246,10 +248,10 @@ export const articles = [
     slug: 'amaran-hujan-lebat-pantai-timur-november',
     lead: 'Jabatan Meteorologi Malaysia (METMalaysia) mengeluarkan amaran hujan lebat yang dijangka melanda beberapa kawasan di Pantai Timur dari 12 hingga 14 November 2026.',
     explanation: 'Kawasan yang terlibat termasuk Kelantan, Terengganu dan utara Pahang. Orang ramai dinasihatkan untuk sentiasa merujuk saluran rasmi METMalaysia bagi kemas kini terkini dan tidak bergantung pada mesej yang dikongsi semula.',
-    image: post('urban-road'),
+    image: post('rain.jpg'),
     alt: 'Jalan bandar dan penunggang basikal',
-    status: 'makluman',
-    categories: ['waspada', 'bencana'],
+    status: 'waspada',
+    categories: ['bencana'],
     date: '2026-11-05',
     agency: { name: agency.met, image: agencyLogo('met') },
   },
@@ -258,10 +260,10 @@ export const articles = [
     slug: 'sekolah-selangor-beroperasi-seperti-biasa',
     lead: 'Kementerian Pendidikan Malaysia (KPM) mengesahkan semua sekolah di Selangor beroperasi seperti biasa minggu ini, berikutan mesej tular yang mendakwa sekolah akan ditutup.',
     explanation: 'Sebarang penutupan sekolah akan diumumkan secara rasmi oleh KPM atau Jabatan Pendidikan Negeri. Ibu bapa dinasihatkan untuk merujuk pengumuman rasmi sekolah dan tidak mempercayai mesej yang tidak bersumber.',
-    image: post('community-lounge'),
+    image: post('school2.jpg'),
     alt: 'Ibu bapa menunggu di ruang legar',
     status: 'benar',
-    categories: ['penjelasan', 'pendidikan'],
+    categories: ['pendidikan'],
     date: '2026-10-30',
     agency: { name: agency.kpm, image: agencyLogo('kpm') },
   },
@@ -270,7 +272,7 @@ export const articles = [
     slug: 'video-vaksin-penyakit-kulit-tidak-benar',
     lead: 'Sebuah video yang tular mendakwa vaksin baharu menyebabkan penyakit kulit. Kementerian Kesihatan Malaysia (KKM) mengesahkan dakwaan tersebut adalah tidak benar.',
     explanation: 'Video itu menggunakan rakaman lama yang tidak berkaitan dengan sebarang program vaksinasi. Semua vaksin yang digunakan di Malaysia telah melalui penilaian keselamatan oleh pihak berkuasa kesihatan.',
-    image: post('audio-explainer'),
+    image: post('vaccine.jpg'),
     alt: 'Penyampai merakam video penerangan',
     status: 'palsu',
     categories: ['kesihatan'],
@@ -282,7 +284,7 @@ export const articles = [
     slug: 'pembaharuan-lesen-memandu-dalam-talian',
     lead: 'Jabatan Pengangkutan Jalan Malaysia (JPJ) memaklumkan bahawa pembaharuan lesen memandu kini boleh dibuat secara dalam talian melalui portal rasmi JPJ.',
     explanation: 'Pemohon hanya perlu log masuk ke portal rasmi JPJ dan membuat bayaran secara dalam talian. JPJ tidak menggunakan pihak ketiga atau pautan yang dihantar melalui mesej untuk urusan pembaharuan lesen.',
-    image: post('service-desk'),
+    image: post('drivingschool.jpg'),
     alt: 'Kaunter perkhidmatan awam',
     status: 'makluman',
     categories: ['pengangkutan'],
@@ -294,7 +296,7 @@ export const articles = [
     slug: 'harga-petrol-ron95-naik-20-sen-palsu',
     lead: 'Satu mesej tular mendakwa harga petrol RON95 akan naik 20 sen seliter bermula esok. Kementerian Perdagangan Dalam Negeri (KPDN) mengesahkan dakwaan tersebut adalah palsu.',
     explanation: 'Harga bahan api diumumkan secara rasmi setiap minggu oleh kerajaan. Orang ramai tidak perlu beratur panjang di stesen minyak berdasarkan mesej yang tidak disahkan.',
-    image: post('payment-check'),
+    image: post('budimadani.jpg'),
     alt: 'Terminal pembayaran tanpa tunai',
     status: 'palsu',
     categories: ['ekonomi', 'kepenggunaan'],
@@ -306,10 +308,10 @@ export const articles = [
     slug: 'penjelasan-jpa-tarikh-gaji-penjawat-awam',
     lead: 'Jabatan Perkhidmatan Awam (JPA) memberi penjelasan berhubung tarikh pembayaran gaji penjawat awam bagi bulan ini, susulan pertanyaan orang ramai di media sosial.',
     explanation: 'Gaji penjawat awam akan dibayar mengikut jadual biasa yang telah diumumkan. Sebarang perubahan tarikh pembayaran hanya akan dimaklumkan melalui pekeliling dan saluran rasmi JPA.',
-    image: post('digital-desk'),
+    image: post('sebenarnya-fc-digital-desk.jpg'),
     alt: 'Telefon pintar dan buku nota di atas meja',
     status: 'benar',
-    categories: ['penjelasan', 'urus-tadbir'],
+    categories: ['urus-tadbir'],
     date: '2026-09-20',
     agency: { name: agency.jpa, image: agencyLogo('jpa') },
   },
@@ -318,10 +320,10 @@ export const articles = [
     slug: 'waspada-panggilan-menyamar-pegawai-polis',
     lead: 'Polis Diraja Malaysia (PDRM) mengingatkan orang ramai supaya berwaspada terhadap panggilan telefon daripada individu yang menyamar sebagai pegawai polis.',
     explanation: 'Penipu biasanya mendakwa mangsa terlibat dalam kes jenayah dan meminta wang dipindahkan ke akaun tertentu. PDRM tidak pernah meminta orang ramai memindahkan wang melalui panggilan telefon.',
-    image: post('kopitiam'),
+    image: post('call.jpg'),
     alt: 'Menyemak telefon di kedai kopi',
-    status: 'makluman',
-    categories: ['waspada', 'keselamatan', 'jenayah'],
+    status: 'waspada',
+    categories: ['keselamatan', 'jenayah'],
     date: '2026-08-12',
     agency: { name: agency.pdrm, image: agencyLogo('pdrm') },
   },
@@ -330,7 +332,7 @@ export const articles = [
     slug: 'undi-pos-aplikasi-mesej-palsu',
     lead: 'Satu hantaran tular mendakwa pengundi boleh membuang undi pos melalui aplikasi mesej. Dakwaan ini disahkan palsu.',
     explanation: 'Undi pos hanya boleh dibuat mengikut prosedur rasmi Suruhanjaya Pilihan Raya (SPR). Tiada sebarang aplikasi mesej digunakan untuk membuang undi, dan pengundi tidak perlu berkongsi maklumat peribadi melalui pautan.',
-    image: post('cafe-talk'),
+    image: post('chat.jpg'),
     alt: 'Perbualan di kedai kopi',
     status: 'palsu',
     categories: ['integriti-pilihan-raya', 'urus-tadbir'],
@@ -342,10 +344,10 @@ export const articles = [
     slug: 'penjelasan-kutipan-zakat-dalam-talian',
     lead: 'Jabatan Penerangan Malaysia (JAPEN) memberi penjelasan berhubung kutipan zakat secara dalam talian yang dibincangkan secara meluas di media sosial.',
     explanation: 'Bayaran zakat secara dalam talian adalah sah apabila dibuat melalui portal rasmi pusat zakat negeri. Orang ramai dinasihatkan agar tidak membuat bayaran melalui akaun peribadi atau pautan yang tidak disahkan.',
-    image: post('senior-dialogue'),
+    image: post('sebenarnya-fc-senior-dialogue.jpg'),
     alt: 'Warga emas berbual di ruang komuniti',
     status: 'benar',
-    categories: ['penjelasan', 'agama'],
+    categories: ['agama'],
     date: '2026-03-18',
     agency: { name: 'JAPEN (Jabatan Penerangan Malaysia)', image: agencyLogo('japen') },
   },
@@ -354,7 +356,7 @@ export const articles = [
     slug: 'gambar-kebakaran-hutan-pahang-gambar-lama',
     lead: 'Gambar kebakaran hutan yang didakwa berlaku di Pahang minggu ini telah tular di media sosial. Jabatan Bomba dan Penyelamat Malaysia (JBPM) mengesahkan gambar tersebut adalah gambar lama.',
     explanation: 'Gambar itu dirakam beberapa tahun lalu di lokasi lain dan tidak berkaitan dengan sebarang kejadian semasa. Tiada laporan kebakaran hutan besar di Pahang bagi tempoh tersebut.',
-    image: withBase('/images/posts/sebenarnya-kopitiam-phone.jpg'),
+    image: post('terbakar.jpg'),
     alt: 'Menyemak gambar tular di telefon',
     status: 'palsu',
     categories: ['bencana', 'keselamatan'],
@@ -366,7 +368,7 @@ export const articles = [
     slug: 'pemeriksaan-kesihatan-percuma-disember',
     lead: 'Kementerian Kesihatan Malaysia (KKM) memaklumkan pemeriksaan kesihatan percuma akan ditawarkan di klinik kesihatan terpilih sepanjang Disember 2026.',
     explanation: 'Pemeriksaan merangkumi tekanan darah, gula dalam darah dan kolesterol. Senarai klinik yang terlibat boleh disemak di laman web rasmi KKM, dan tiada sebarang pendaftaran melalui pautan pihak ketiga.',
-    image: post('public-waiting'),
+    image: post('clinic.jpg'),
     alt: 'Ruang menunggu klinik kesihatan',
     status: 'makluman',
     categories: ['kesihatan', 'kepenggunaan'],
