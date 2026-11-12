@@ -702,12 +702,17 @@ input::placeholder { color: var(--text); }
 
 /* Shown instead of the caption when a search has no results */
 .claim-error {
-  max-width: 390px;
   margin-bottom: 1.4vh;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.3;
   color: var(--red);
+}
+
+/* Hero search error stays on one line; wraps only on small screens */
+.form-wrap .claim-error { white-space: nowrap; }
+@media (max-width: 600px) {
+  .form-wrap .claim-error { white-space: normal; }
 }
 
 @media (max-width: 1480px) {
