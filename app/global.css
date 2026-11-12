@@ -1444,7 +1444,7 @@ input::placeholder { color: var(--text); }
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--red);
 }
 
 .headline-big {
@@ -1503,13 +1503,13 @@ input::placeholder { color: var(--text); }
   color: var(--white);
 }
 
-.metric-value.orange { color: var(--orange); }
+.metric-value.red { color: var(--red); }
 
 .metric-plus {
   margin-left: 1px;
   font-size: 2.2rem;
   vertical-align: super;
-  color: var(--orange);
+  color: var(--red);
 }
 
 .metric-label {
@@ -1566,14 +1566,14 @@ input::placeholder { color: var(--text); }
   font-weight: 600;
   color: var(--white);
   border-radius: 999px;
-  background-color: #ff5722;
-  box-shadow: 0 8px 20px rgba(255, 87, 34, .35);
+  background-color: var(--red);
+  box-shadow: 0 8px 20px rgba(229, 28, 35, .35);
   transition: all .2s ease;
 }
 
 .pill-btn:hover {
-  background-color: #e64a19;
-  box-shadow: 0 12px 24px rgba(255, 87, 34, .45);
+  background-color: #c4161c;
+  box-shadow: 0 12px 24px rgba(229, 28, 35, .45);
   transform: translateY(-2px);
 }
 
@@ -1585,7 +1585,7 @@ input::placeholder { color: var(--text); }
   height: 32px;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #ff5722;
+  color: var(--red);
   border-radius: 50%;
   background-color: var(--white);
   transition: transform .2s ease;
