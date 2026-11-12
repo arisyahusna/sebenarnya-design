@@ -104,27 +104,16 @@ export const footerColumns = [
     title: 'Explore',
     links: [
       { label: 'Fact-Checks', href: '/check-fact/' },
-      { label: 'News and Updates', href: '/viral/' },
-      { label: 'Videos', href: '/video/' },
-      { label: 'Viral Claims', href: '/viral/' },
-    ],
-  },
-  {
-    title: 'Tools & Services',
-    links: [
       { label: 'AIFA', href: '/aifa/' },
       { label: 'Submit a Claim', href: '/submit-claim/' },
-      { label: 'How We Check', href: '/check-fact/' },
-      { label: 'Media Literacy', href: '/about-us/' },
     ],
   },
+
   {
     title: 'Sebenarnya.my',
     links: [
       { label: 'About Us', href: '/about-us/' },
       { label: 'Contact', href: '/contact/' },
-      { label: 'Official Agencies', href: '/about-us/' },
-      { label: 'Login', href: '/signin/' },
     ],
   },
 ];
