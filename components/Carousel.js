@@ -1,7 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { heroSlides as slides } from '@/data/content';
+import { heroSlides } from '@/data/content';
+import { articleHref, getArticle } from '@/lib/articles';
+
+// Each slide points at an article; it links to that article and falls back to its image
+const slides = heroSlides.map((s) => {
+  const article = getArticle(s.slug);
+  return { ...s, href: articleHref(article), image: s.image || article.image };
+});
 
 const COUNT = slides.length;
 const DELAY = 6000; // autoplay interval, matches the dot fill animation in global.css

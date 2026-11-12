@@ -125,48 +125,52 @@ export const footerColumns = [
 ];
 
 // Hero carousel (components/Carousel.js)
+// `slug` = article in `articles` below; the slide links to /article/<slug>
+// `image` = optional override (defaults to the article's image)
 // `position` = image focus point on a dark slide, `wide` = image sits on the right 74%
-const fc = (slug) => `https://sebenarnya.my/${slug}/`;
-
 export const heroSlides = [
   {
+    slug: 'pembaharuan-lesen-memandu-dalam-talian',
     image: '/images/carousel/hero-lesen.jpg',
     position: '72% 50%',
-    eyebrow: 'Fokus utama | Semakan fakta',
-    title: 'Yang tular',
-    titleEm: 'belum tentu benar.',
-    text: 'Kenali konteks di sebalik dakwaan yang sedang hangat diperkatakan.',
-    cta: 'Baca semakan',
-    href: 'https://sebenarnya.my/',
+    eyebrow: 'Makluman | JPJ',
+    title: 'Perbaharui lesen',
+    titleEm: 'terus dalam talian.',
+    text: 'Pembaharuan lesen memandu hanya melalui portal rasmi JPJ, bukan pautan dalam mesej.',
+    cta: 'Baca makluman',
   },
   {
-    image: '/images/carousel/hero-str.jpg',
-    position: '88% 50%',
-    wide: true,
-    eyebrow: 'Palsu | Kementerian Kewangan',
-    title: 'Tiada jadual STR',
-    titleEm: 'pada 30 Oktober.',
-    text: 'Mesej yang tular itu palsu. Semak jadual rasmi sebelum anda berkongsi.',
+    slug: 'pautan-bantuan-tunai-whatsapp-palsu',
+    eyebrow: 'Palsu | MCMC',
+    title: 'Pautan bantuan tunai',
+    titleEm: 'di WhatsApp itu palsu.',
+    text: 'Laman tiruan itu meminta butiran kad pengenalan dan akaun bank anda. Jangan isi.',
     cta: 'Baca semakan',
-    href: fc('dakwaan-terdapat-jadual-bayaran-str-fasa-4-pada-30-oktober-2026-adalah-tidak-benar'),
   },
   {
+    slug: 'amaran-hujan-lebat-pantai-timur-november',
     image: '/images/carousel/hero-cuaca.jpg',
-    eyebrow: 'Waspada | MET Malaysia',
+    eyebrow: 'Makluman | METMalaysia',
     title: 'Hujan lebat tiga hari',
-    titleEm: 'di Semenanjung.',
-    text: 'Ramalan cuaca signifikan dari 24 hingga 26 Oktober 2026. Ikuti amaran rasmi.',
+    titleEm: 'di Pantai Timur.',
+    text: 'Amaran hujan lebat dari 12 hingga 14 November 2026. Ikuti kemas kini rasmi.',
     cta: 'Baca amaran',
-    href: fc('waspada-ramalan-cuaca-signifikan-di-semenanjung-malaysia-dari-24-hingga-26-oktober-2026'),
   },
   {
-    image: '/images/carousel/hero-ktmb.jpg',
-    eyebrow: 'Penjelasan | KTMB',
-    title: 'Apa sebenarnya berlaku',
-    titleEm: 'di landasan Pelabuhan Klang.',
-    text: 'Penjelasan rasmi KTMB tentang kenderaan awam yang memasuki landasan.',
-    cta: 'Baca penjelasan',
-    href: fc('penjelasan-ktmb-berhubung-insiden-kenderaan-awam-memasuki-landasan-di-stesen-pelabuhan-klang'),
+    slug: 'harga-petrol-ron95-naik-20-sen-palsu',
+    eyebrow: 'Palsu | KPDN',
+    title: 'RON95 tidak naik',
+    titleEm: '20 sen esok.',
+    text: 'Mesej yang tular itu palsu. Harga bahan api diumumkan secara rasmi setiap minggu.',
+    cta: 'Baca semakan',
+  },
+  {
+    slug: 'gambar-kebakaran-hutan-pahang-gambar-lama',
+    eyebrow: 'Palsu | JBPM',
+    title: 'Gambar kebakaran hutan',
+    titleEm: 'itu gambar lama.',
+    text: 'Gambar yang tular bukan dari Pahang minggu ini. Semak sebelum anda berkongsi.',
+    cta: 'Baca semakan',
   },
 ];
 
