@@ -165,7 +165,9 @@ export default function Stories() {
 
                 {/* The post itself; the player only loads on the open card */}
                 <div className="story-media">
-                  {active && (story.embed ? (
+                  {active && (story.video ? (
+                    <video src={story.video} poster={story.poster} controls playsInline preload="none" />
+                  ) : story.embed ? (
                     <iframe
                       src={story.embed}
                       title={`${social.label}: ${story.title}`}

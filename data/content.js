@@ -24,7 +24,8 @@ export const navLinks = [
 
 /* Stories carousel (latest social media posts) */
 // `platform` = id in `socialLinks` (sets the icon, label and card colour)
-// `href` = the post; the card plays `embed` (the platform's official player) or shows `image` for photo posts
+// `href` = the post. The card shows one of: `video` (+ `poster`) = a local copy of the clip,
+// `embed` = the platform's official player, `image` = for photo posts
 export const stories = [
   {
     platform: 'instagram',
@@ -32,7 +33,8 @@ export const stories = [
     summary: 'WhatsApp AIFA di 03-8688 7997 atau layari Sebenarnya.my. AIFA akan semak dan jawab guna sumber yang sahih.',
     date: 'Aug 07, 2025',
     href: 'https://www.instagram.com/reel/DNCUauizeUu/',
-    embed: 'https://www.instagram.com/reel/DNCUauizeUu/embed/',
+    video: '/images/stories/instagram-aifa.mp4',
+    poster: '/images/stories/instagram-aifa.jpg',
   },
   {
     platform: 'threads',

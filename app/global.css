@@ -1064,6 +1064,7 @@ input::placeholder { color: var(--text); }
 
 .story-media a { display: block; height: 100%; }
 
+.story-media video,
 .story-media img {
   display: block;
   width: 100%;
@@ -1087,13 +1088,14 @@ input::placeholder { color: var(--text); }
   max-width: 680px;
   height: 4px;
   border-radius: 999px;
-  background-color: rgba(0, 0, 0, .08);
+  background-color: rgba(0, 0, 0, .1);
 }
 
+/* Same greys as the hero carousel controls */
 .progress-bar {
   height: 100%;
   border-radius: 999px;
-  background-color: #5e5ce6;
+  background-color: rgba(0, 0, 0, .72);
   transition: width .4s var(--slide);
 }
 
@@ -1108,21 +1110,19 @@ input::placeholder { color: var(--text); }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  color: #1e3a8a;
+  width: 48px;
+  height: 48px;
+  color: var(--text);
   border: none;
   border-radius: 50%;
-  background-color: #c8d4ff;
+  background-color: rgba(232, 232, 237, .7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   cursor: pointer;
-  transition: all .2s ease;
+  transition: background-color .2s ease, transform .2s ease;
 }
 
-.round-btn:hover {
-  color: var(--white);
-  background-color: #5e5ce6;
-  transform: scale(1.08);
-}
+.round-btn:hover { background-color: rgba(210, 210, 215, .8); }
 
 .round-btn:active { transform: scale(.95); }
 
