@@ -20,11 +20,11 @@ export default function Footer() {
 
           <div className="footer-links">
             <div className="footer-col">
-              <small>Social</small>
+              <small>Sosial</small>
               <ul>
                 {socialLinks.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} aria-label={`link ${link.label}`}>
+                    <a href={link.href} aria-label={`Pautan ${link.label}`}>
                       <svg role="img" viewBox="0 0 24 24"><path d={link.icon} /></svg>
                       {link.label}
                     </a>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-copy">
-            &copy; 2023 <a href={withBase('/')}> Malaysian Communications and Multimedia Commission</a>.
+            &copy; 2023 <a href={withBase('/')}> Suruhanjaya Komunikasi dan Multimedia Malaysia</a>.
           </div>
         </div>
       </div>

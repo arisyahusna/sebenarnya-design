@@ -15,12 +15,12 @@ export const AIFA_HREF = '/aifa/';
 
 const GREETING = {
   from: 'bot',
-  text: "Hi, I'm AIFA. Ask me about a message or claim you've seen, and I'll look for related fact-checks on Sebenarnya.my.",
+  text: 'Hai, saya AIFA. Tanya saya tentang mesej atau dakwaan yang anda terima, dan saya akan carikan semakan fakta berkaitan di Sebenarnya.my.',
 };
 
-const SUGGESTIONS = ['Bantuan tunai WhatsApp', 'Amaran hujan lebat', 'How do I submit a claim?'];
+const SUGGESTIONS = ['Bantuan tunai WhatsApp', 'Amaran hujan lebat', 'Bagaimana nak salurkan dakwaan?'];
 
-const DISCLAIMER = 'AIFA helps you find published information. It is not the final authority on whether a claim is true.';
+const DISCLAIMER = 'AIFA membantu anda mencari maklumat yang telah diterbitkan. AIFA bukan penentu muktamad sama ada sesuatu dakwaan itu benar.';
 
 const has = (text, words) => words.some((w) => text.includes(w));
 
@@ -28,33 +28,33 @@ function getReply(input) {
   const text = input.toLowerCase();
 
   if (/^(hi|hello|hey|hai|helo|salam|assalamualaikum)\b/.test(text)) {
-    return { text: 'Hello! Type a few keywords from the message or claim you want to check.' };
+    return { text: 'Hai! Taip beberapa kata kunci daripada mesej atau dakwaan yang ingin anda semak.' };
   }
 
   if (has(text, ['submit', 'report', 'lapor', 'hantar', 'aduan'])) {
     return {
-      text: "If you can't find a fact-check, send the claim to our team and they'll verify it.",
-      links: [{ label: 'Submit a claim', href: '/submit-claim/' }],
+      text: 'Jika anda tidak menjumpai semakan fakta, salurkan dakwaan itu kepada pasukan kami untuk disemak.',
+      links: [{ label: 'Salur Kepada Kami', href: '/submit-claim/' }],
     };
   }
 
   if (has(text, ['thank', 'terima kasih', 'tq'])) {
-    return { text: "You're welcome. Remember to check before you share!" };
+    return { text: 'Sama-sama. Ingat, semak dahulu sebelum kongsi!' };
   }
 
   const found = rankArticles(input);
   if (found.length) {
     return {
-      text: found.length === 1 ? 'I found a related fact-check:' : `I found ${found.length} related fact-checks:`,
+      text: found.length === 1 ? 'Saya jumpa satu semakan fakta berkaitan:' : `Saya jumpa ${found.length} semakan fakta berkaitan:`,
       articles: found,
     };
   }
 
   return {
-    text: "I couldn't find a published fact-check on that yet. Try other keywords, browse all fact-checks, or submit the claim for checking.",
+    text: 'Belum ada semakan fakta yang diterbitkan tentang perkara itu. Cuba kata kunci lain, lihat semua semakan fakta, atau salurkan dakwaan itu untuk disemak.',
     links: [
-      { label: 'Browse fact-checks', href: '/article/' },
-      { label: 'Submit a claim', href: '/submit-claim/' },
+      { label: 'Lihat semakan fakta', href: '/article/' },
+      { label: 'Salur Kepada Kami', href: '/submit-claim/' },
     ],
   };
 }
@@ -124,17 +124,17 @@ export default function Chatbot() {
 
   return (
     <div className={open ? 'aifa open' : 'aifa'}>
-      <section id="aifa-panel" className="aifa-panel" role="dialog" aria-label="AIFA Chatbot" hidden={!open}>
+      <section id="aifa-panel" className="aifa-panel" role="dialog" aria-label="Chatbot AIFA" hidden={!open}>
         <header className="aifa-head">
           <span className="aifa-avatar" aria-hidden="true">AI</span>
           <div className="aifa-title">
-            <strong>AIFA Chatbot</strong>
-            <span>Smart fact assistant</span>
+            <strong>Chatbot AIFA</strong>
+            <span>Pembantu fakta pintar</span>
           </div>
           <button
             type="button"
             className="aifa-close"
-            aria-label="Close chat"
+            aria-label="Tutup sembang"
             onClick={() => {
               setOpen(false);
               toggleRef.current?.focus();
@@ -180,7 +180,7 @@ export default function Chatbot() {
           ))}
 
           {typing && (
-            <div className="aifa-msg bot aifa-typing" aria-label="AIFA is typing">
+            <div className="aifa-msg bot aifa-typing" aria-label="AIFA sedang menaip">
               <span />
               <span />
               <span />
@@ -204,11 +204,11 @@ export default function Chatbot() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about a claim…"
-            aria-label="Message AIFA"
+            placeholder="Tanya tentang sesuatu dakwaan…"
+            aria-label="Mesej kepada AIFA"
             maxLength={300}
           />
-          <button type="submit" aria-label="Send" disabled={!input.trim() || typing}>
+          <button type="submit" aria-label="Hantar" disabled={!input.trim() || typing}>
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
               <path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -222,7 +222,7 @@ export default function Chatbot() {
         ref={toggleRef}
         type="button"
         className="aifa-toggle"
-        aria-label={open ? 'Close AIFA Chatbot' : 'Open AIFA Chatbot'}
+        aria-label={open ? 'Tutup Chatbot AIFA' : 'Buka Chatbot AIFA'}
         aria-expanded={open}
         aria-controls="aifa-panel"
         onClick={() => setOpen(!open)}
@@ -243,7 +243,7 @@ export default function Chatbot() {
               />
               <path d="M8.5 9.5h7M8.5 12.5h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
-            <span className="aifa-toggle-label">Ask AIFA</span>
+            <span className="aifa-toggle-label">Tanya AIFA</span>
           </>
         )}
       </button>

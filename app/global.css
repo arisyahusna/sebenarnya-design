@@ -675,11 +675,12 @@ input::placeholder { color: var(--text); }
 .hero-title span { font-weight: 700; }
 .hero-tagline { font-style: normal; }
 
-/* Hero: claim search form (width is synced to the tagline in Hero.js) */
+/* Hero: claim search form, full width of the container */
 .claim-form {
   box-sizing: border-box;
-  width: calc(11.55 * clamp(3.4rem, 4.6vw, 8rem));
-  max-width: 100%;
+  flex: 1 1 100%;
+  width: 100%;
+  margin-right: 0;
 }
 
 .claim-form input {

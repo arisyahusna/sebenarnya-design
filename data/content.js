@@ -33,7 +33,7 @@ export const stories = [
     platform: 'instagram',
     title: 'Haa sebelum share, tanya AIFA dulu!',
     summary: 'WhatsApp AIFA di 03-8688 7997 atau layari Sebenarnya.my. AIFA akan semak dan jawab guna sumber yang sahih.',
-    date: 'Aug 07, 2025',
+    date: '7 Ogo 2025',
     href: 'https://www.instagram.com/reel/DNCUauizeUu/',
     video: withBase('/images/stories/instagram-aifa.mp4'),
     poster: withBase('/images/stories/instagram-aifa.jpg'),
@@ -42,7 +42,7 @@ export const stories = [
     platform: 'threads',
     title: 'Selamat Hari Malaysia!',
     summary: 'Bersama kita raikan perpaduan, pelihara kepercayaan dan utamakan kebenaran. Semak dahulu di portal Sebenarnya.my sebelum kongsi.',
-    date: 'Sep 15, 2026',
+    date: '15 Sep 2026',
     href: 'https://www.threads.com/@sebenarnya.myofficial/post/DdTV7PQlCdu',
     embed: 'https://www.threads.com/@sebenarnya.myofficial/post/DdTV7PQlCdu/embed',
   },
@@ -50,7 +50,7 @@ export const stories = [
     platform: 'x',
     title: 'Cara semak maklumat dengan AIFA',
     summary: 'Terima kandungan yang meragukan? Jangan panik, jangan sebarkan. Semak melalui AIFA di portal Sebenarnya.my atau imbas kod QR.',
-    date: 'Jun 12, 2025',
+    date: '12 Jun 2025',
     href: 'https://x.com/sebenarnyaMY/status/1933107075279966676',
     image: withBase('/images/stories/x-aifa.jpg'),
     alt: 'Infografik empat langkah semak maklumat dengan AIFA melalui WhatsApp 03-8688 7997',
@@ -59,7 +59,7 @@ export const stories = [
     platform: 'tiktok',
     title: 'Tonton di TikTok Sebenarnya.my',
     summary: 'Video terkini daripada @sebenarnyamy. Tidak pasti, jangan kongsi.',
-    date: 'Sep 14, 2025',
+    date: '14 Sep 2025',
     href: 'https://www.tiktok.com/@sebenarnyamy/video/7549728480137596167',
     embed: 'https://www.tiktok.com/player/v1/7549728480137596167?description=0&music_info=0&rel=0&loop=1',
   },
@@ -103,7 +103,7 @@ export const socialLinks = [
 /* Footer */
 export const footerColumns = [
   {
-    title: 'Explore',
+    title: 'Teroka',
     links: [
       { label: 'Semak Fakta', href: '/article/' },
       { label: 'AIFA', href: '/aifa/' },
