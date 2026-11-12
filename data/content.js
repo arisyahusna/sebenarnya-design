@@ -1,6 +1,8 @@
 // All page content lives here, so sections can be edited without touching markup.
 
-const post = (name) => `/images/posts/sebenarnya-fc-${name}.jpg`;
+import { withBase } from '@/lib/basePath';
+
+const post = (name) => withBase(`/images/posts/sebenarnya-fc-${name}.jpg`);
 
 const agency = {
   kpm: 'KPM (Kementerian Pendidikan Malaysia)',
@@ -33,8 +35,8 @@ export const stories = [
     summary: 'WhatsApp AIFA di 03-8688 7997 atau layari Sebenarnya.my. AIFA akan semak dan jawab guna sumber yang sahih.',
     date: 'Aug 07, 2025',
     href: 'https://www.instagram.com/reel/DNCUauizeUu/',
-    video: '/images/stories/instagram-aifa.mp4',
-    poster: '/images/stories/instagram-aifa.jpg',
+    video: withBase('/images/stories/instagram-aifa.mp4'),
+    poster: withBase('/images/stories/instagram-aifa.jpg'),
   },
   {
     platform: 'threads',
@@ -50,7 +52,7 @@ export const stories = [
     summary: 'Terima kandungan yang meragukan? Jangan panik, jangan sebarkan. Semak melalui AIFA di portal Sebenarnya.my atau imbas kod QR.',
     date: 'Jun 12, 2025',
     href: 'https://x.com/sebenarnyaMY/status/1933107075279966676',
-    image: '/images/stories/x-aifa.jpg',
+    image: withBase('/images/stories/x-aifa.jpg'),
     alt: 'Infografik empat langkah semak maklumat dengan AIFA melalui WhatsApp 03-8688 7997',
   },
   {
@@ -125,7 +127,7 @@ export const footerColumns = [
 export const heroSlides = [
   {
     slug: 'pembaharuan-lesen-memandu-dalam-talian',
-    image: '/images/carousel/hero-lesen.jpg',
+    image: withBase('/images/carousel/hero-lesen.jpg'),
     position: '72% 50%',
     eyebrow: 'Makluman | JPJ',
     title: 'Perbaharui lesen',
@@ -143,7 +145,7 @@ export const heroSlides = [
   },
   {
     slug: 'amaran-hujan-lebat-pantai-timur-november',
-    image: '/images/carousel/hero-cuaca.jpg',
+    image: withBase('/images/carousel/hero-cuaca.jpg'),
     eyebrow: 'Makluman | METMalaysia',
     title: 'Hujan lebat tiga hari',
     titleEm: 'di Pantai Timur.',
@@ -177,7 +179,7 @@ export const viewershipStats = [
 ];
 
 // Collaborators ticker (components/Collaborators.js)
-const partnerLogo = (name) => `/images/logo/partners/${name}.png`;
+const partnerLogo = (name) => withBase(`/images/logo/partners/${name}.png`);
 
 export const partners = [
   { name: 'Kementerian Kewangan Malaysia', logo: partnerLogo('mof') },
@@ -219,7 +221,7 @@ export const articleStatus = {
   benar: { label: 'Benar', color: '#1d8a4e' },
 };
 
-const agencyLogo = (name) => `/images/authors/agency-${name}.webp`;
+const agencyLogo = (name) => withBase(`/images/authors/agency-${name}.webp`);
 
 // `status` = card tag (palsu / makluman / benar)
 // `categories` = filter-bar ids this article also appears under
@@ -352,7 +354,7 @@ export const articles = [
     slug: 'gambar-kebakaran-hutan-pahang-gambar-lama',
     lead: 'Gambar kebakaran hutan yang didakwa berlaku di Pahang minggu ini telah tular di media sosial. Jabatan Bomba dan Penyelamat Malaysia (JBPM) mengesahkan gambar tersebut adalah gambar lama.',
     explanation: 'Gambar itu dirakam beberapa tahun lalu di lokasi lain dan tidak berkaitan dengan sebarang kejadian semasa. Tiada laporan kebakaran hutan besar di Pahang bagi tempoh tersebut.',
-    image: '/images/posts/sebenarnya-kopitiam-phone.jpg',
+    image: withBase('/images/posts/sebenarnya-kopitiam-phone.jpg'),
     alt: 'Menyemak gambar tular di telefon',
     status: 'palsu',
     categories: ['bencana', 'keselamatan'],

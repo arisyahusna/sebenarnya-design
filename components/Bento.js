@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { withBase } from '@/lib/basePath';
 
 const metrics = [
   { value: '10K', plus: true, label: 'Viral Claims Debunked' },
@@ -16,7 +17,7 @@ export default function Bento() {
         <div className="bento-card dots">
           <div>
             <div className="badge">
-              <img src="/images/bento/gold-award-medal.webp" alt="United Nations WSIS Gold Medal" className="badge-medal" loading="lazy" />
+              <img src={withBase('/images/bento/gold-award-medal.webp')} alt="United Nations WSIS Gold Medal" className="badge-medal" loading="lazy" />
               <span>Geneva &bull; United Nations WSIS</span>
             </div>
             <h3 className="headline">
@@ -45,7 +46,7 @@ export default function Bento() {
             </div>
           </div>
           <div>
-            <a href="/tentang-kami/" className="pill-btn">
+            <a href={withBase('/tentang-kami/')} className="pill-btn">
               <span>Explore The WSIS Story</span>
               <span className="pill-icon">→</span>
             </a>
@@ -53,7 +54,7 @@ export default function Bento() {
         </div>
 
         <div className="bento-card image">
-          <img src="/images/bento/wsis-prize-award.webp" alt="WSIS Prizes Winner Trophy - Geneva, Switzerland" className="bento-img" loading="lazy" />
+          <img src={withBase('/images/bento/wsis-prize-award.webp')} alt="WSIS Prizes Winner Trophy - Geneva, Switzerland" className="bento-img" loading="lazy" />
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Logo from './Logo';
 import { navLinks } from '@/data/content';
+import { withBase } from '@/lib/basePath';
 
 const languages = [
   { code: 'EN', lang: 'en', name: 'English' },
@@ -47,7 +48,7 @@ export default function Header() {
             <ul>
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}>{link.label}</a>
+                  <a href={withBase(link.href)}>{link.label}</a>
                 </li>
               ))}
             </ul>

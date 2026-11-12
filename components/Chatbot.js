@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { articleStatus } from '@/data/content';
 import { rankArticles } from '@/lib/searchArticles';
 import { articleHref, formatDate } from '@/lib/articles';
+import { withBase } from '@/lib/basePath';
 
 // AIFA chatbot: a floating assistant on every page.
 // Rule-based for now — it answers by searching the site's published fact-checks.
@@ -85,7 +86,7 @@ export default function Chatbot() {
   // Open the chat from any "AIFA" link on the page
   useEffect(() => {
     const onClick = (e) => {
-      const link = e.target.closest?.(`a[href="${AIFA_HREF}"]`);
+      const link = e.target.closest?.(`a[href="${withBase(AIFA_HREF)}"]`);
       if (!link) return;
       e.preventDefault();
       setOpen(true);
@@ -154,7 +155,7 @@ export default function Chatbot() {
                 <ul className="aifa-results">
                   {m.articles.map((a) => (
                     <li key={a.slug}>
-                      <a href={articleHref(a)}>
+                      <a href={withBase(articleHref(a))}>
                         <span className="aifa-status" style={{ '--status': articleStatus[a.status].color }}>
                           {articleStatus[a.status].label}
                         </span>
@@ -169,7 +170,7 @@ export default function Chatbot() {
               {m.links && (
                 <div className="aifa-links">
                   {m.links.map((l) => (
-                    <a key={l.href} href={l.href}>
+                    <a key={l.href} href={withBase(l.href)}>
                       {l.label}
                     </a>
                   ))}

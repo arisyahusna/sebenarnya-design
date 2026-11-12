@@ -1,6 +1,7 @@
 import './global.css';
 import Chatbot from '@/components/Chatbot';
 import ClaimForm from '@/components/ClaimForm';
+import { withBase } from '@/lib/basePath';
 
 const description =
   'Sebenarnya.my helps the public find verified information and official responses, explore news and updates, check claims, and submit information they are unsure about.';
@@ -8,7 +9,7 @@ const description =
 export const metadata = {
   title: 'Sebenarnya.my',
   description,
-  icons: { icon: '/images/logo/icon.png' },
+  icons: { icon: withBase('/images/logo/icon.png') },
   openGraph: {
     type: 'website',
     siteName: 'Sebenarnya.my',
