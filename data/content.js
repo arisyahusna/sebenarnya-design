@@ -108,7 +108,7 @@ export const footerColumns = [
     title: 'Tools & Services',
     links: [
       { label: 'AIFA', href: '/aifa/' },
-      { label: 'Submit a Claim', href: '/check-fact/' },
+      { label: 'Submit a Claim', href: '/submit-claim/' },
       { label: 'How We Check', href: '/check-fact/' },
       { label: 'Media Literacy', href: '/about-us/' },
     ],
