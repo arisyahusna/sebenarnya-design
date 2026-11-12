@@ -127,7 +127,7 @@ export const footerColumns = [
 export const heroSlides = [
   {
     slug: 'pembaharuan-lesen-memandu-dalam-talian',
-    image: withBase('/images/carousel/hero-lesen.jpg'),
+    image: withBase('/images/carousel/license.png'),
     position: '72% 50%',
     eyebrow: 'Makluman | JPJ',
     title: 'Perbaharui lesen',
@@ -284,7 +284,7 @@ export const articles = [
     slug: 'pembaharuan-lesen-memandu-dalam-talian',
     lead: 'Jabatan Pengangkutan Jalan Malaysia (JPJ) memaklumkan bahawa pembaharuan lesen memandu kini boleh dibuat secara dalam talian melalui portal rasmi JPJ.',
     explanation: 'Pemohon hanya perlu log masuk ke portal rasmi JPJ dan membuat bayaran secara dalam talian. JPJ tidak menggunakan pihak ketiga atau pautan yang dihantar melalui mesej untuk urusan pembaharuan lesen.',
-    image: post('drivingschool.jpg'),
+    image: post('license.jpg'),
     alt: 'Kaunter perkhidmatan awam',
     status: 'makluman',
     categories: ['pengangkutan'],
