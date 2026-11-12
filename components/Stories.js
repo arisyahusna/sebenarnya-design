@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { stories } from '@/data/content';
+import { stories, socialLinks } from '@/data/content';
 
 const COUNT = stories.length;
+const platforms = Object.fromEntries(socialLinks.map((p) => [p.id, p]));
 
 // Three copies (before / real / after) so the side previews fill the screen and the loop looks endless
 const slides = [...stories, ...stories, ...stories];
@@ -105,7 +106,7 @@ export default function Stories() {
         className="stories-viewport"
         ref={viewportRef}
         tabIndex={0}
-        aria-label="Our Latest Announcements & Activities Carousel"
+        aria-label="Our latest social media posts"
         onKeyDown={handleKeyDown}
         onTouchStart={(e) => { touchStartX.current = e.changedTouches[0].screenX; }}
         onTouchEnd={handleTouchEnd}
@@ -123,28 +124,24 @@ export default function Stories() {
           {slides.map((story, i) => {
             const active = i === index;
             const linkTab = active ? undefined : -1;
+            const social = platforms[story.platform];
 
             return (
               <article
                 key={i}
-                className={active ? 'story active' : 'story'}
+                className={`story story-${story.platform}${active ? ' active' : ''}`}
                 aria-hidden={i < COUNT || i >= COUNT * 2 ? true : undefined}
                 style={{ width: active ? s.big : s.small, transition }}
                 onClick={() => !active && goTo(i)}
               >
-                <div className="story-bg">
-                  <img src={story.image} alt={story.alt} loading="lazy" />
-                </div>
-                <div className="story-shade" />
+                {/* Platform logo, shown while the card is folded */}
+                <svg className="story-brand" viewBox="0 0 24 24" aria-hidden="true"><path d={social.icon} /></svg>
 
                 <div className="story-body">
                   <div className="story-meta">
-                    <span className={story.alert ? 'story-badge alert' : 'story-badge'}>
-                      <span className="story-badge-dot">•</span> {story.badge}
-                    </span>
-                    <span className="story-info">
-                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                      {story.readTime}
+                    <span className="story-badge">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={social.icon} /></svg>
+                      {social.label}
                     </span>
                     <span className="story-info">
                       <svg viewBox="0 0 24 24">
@@ -157,14 +154,31 @@ export default function Stories() {
                     </span>
                   </div>
                   <h3 className="story-title">
-                    <a href={story.href} tabIndex={linkTab}>{story.title}</a>
+                    <a href={story.href} target="_blank" rel="noopener noreferrer" tabIndex={linkTab}>{story.title}</a>
                   </h3>
                   <p className="story-summary">{story.summary}</p>
+                  <a href={story.href} className="story-open" target="_blank" rel="noopener noreferrer" tabIndex={linkTab}>
+                    Buka di {social.label}
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+                  </a>
                 </div>
 
-                <a href={story.href} className="story-open" aria-label={story.openLabel} tabIndex={linkTab}>
-                  <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
-                </a>
+                {/* The post itself; the player only loads on the open card */}
+                <div className="story-media">
+                  {active && (story.embed ? (
+                    <iframe
+                      src={story.embed}
+                      title={`${social.label}: ${story.title}`}
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  ) : (
+                    <a href={story.href} target="_blank" rel="noopener noreferrer">
+                      <img src={story.image} alt={story.alt} />
+                    </a>
+                  ))}
+                </div>
               </article>
             );
           })}
