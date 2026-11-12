@@ -4,7 +4,7 @@ import { withBase } from '@/lib/basePath';
 const metrics = [
   { value: '10K', plus: true, label: 'Dakwaan Tular Disangkal' },
   { value: '33M', label: 'Rakyat Malaysia Dilindungi' },
-  { value: 'No. 1', orange: true, label: 'Anugerah Global PBB' },
+  { value: 'No. 1', red: true, label: 'Anugerah Global PBB' },
 ];
 
 export default function Bento() {
@@ -35,7 +35,7 @@ export default function Bento() {
                 <Fragment key={metric.label}>
                   {i > 0 && <div className="metric-line" />}
                   <div className="metric">
-                    <span className={metric.orange ? 'metric-value orange' : 'metric-value'}>
+                    <span className={metric.red ? 'metric-value red' : 'metric-value'}>
                       {metric.value}
                       {metric.plus && <span className="metric-plus">+</span>}
                     </span>
