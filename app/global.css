@@ -3442,3 +3442,519 @@ input::placeholder { color: var(--text); }
   .claim-foot { padding: 14px 16px 16px; }
   .claim-foot .btn { width: 100%; }
 }
+
+/* ==========================================================================
+   About us: hero (components/AboutUs.js)
+   Same type scale as the home hero; serif accent matches the hero carousel.
+   ========================================================================== */
+.about-hero {
+  padding-top: 4vh;
+  padding-bottom: 8vh;
+}
+
+.about-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 2.4vh;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Small red dot before the label */
+.about-hero-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--red);
+}
+
+.about-hero-title {
+  max-width: 1500px;
+  margin: 0 0 5vh;
+  font-size: clamp(3.4rem, 4.6vw, 8rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: var(--letter-spacing);
+  text-wrap: balance;
+}
+
+.about-hero-title span { font-weight: 700; }
+
+.about-hero-title em {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.015em;
+  white-space: nowrap; /* keeps "sejak 2017." together */
+}
+
+/* Intro text on the left, actions on the right */
+.about-hero-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3vh 48px;
+  margin-bottom: 5vh;
+}
+
+.about-hero-lead {
+  flex: 1 1 520px;
+  max-width: 45em; /* in em so it scales with the text: fits the intro in 3 lines on desktop */
+  margin: 0;
+  font-size: clamp(1.8rem, 1.6vw, 2.4rem);
+  line-height: 1.45;
+  text-wrap: balance; /* evens out the lines so all 3 run full width */
+  opacity: var(--fade);
+}
+
+.about-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+
+.about-hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: color .2s ease;
+}
+
+.about-hero-link svg { transition: transform .2s ease; }
+.about-hero-link:hover { color: var(--red); }
+.about-hero-link:hover svg { transform: translateX(3px); }
+
+/* Banner image with fact pills on top */
+.about-hero-media {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-radius: var(--radius);
+  background-color: var(--tag-bg);
+}
+
+.about-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.about-hero-facts {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: calc(100% - 48px);
+}
+
+.about-hero-facts span {
+  padding: 9px 16px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 100px;
+  background-color: var(--white);
+}
+
+@media (max-width: 1480px) {
+  .about-hero { padding-top: 2vh; }
+  .about-hero-title { margin-bottom: 4vh; }
+  .about-hero-link { font-size: 1.7rem; }
+}
+
+@media (max-width: 1024px) {
+  .about-hero { padding-top: 1vh; padding-bottom: 6vh; }
+  .about-hero-title { margin-bottom: 3vh; }
+  .about-hero-media img { aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 768px) {
+  .about-hero-lead { flex-basis: 100%; }
+  .about-hero-media { border-radius: 18px; }
+  .about-hero-media img { aspect-ratio: 4 / 3; object-position: 45% center; }
+  .about-hero-facts { bottom: 14px; left: 14px; max-width: calc(100% - 28px); }
+  .about-hero-facts span { padding: 7px 12px; font-size: 1.3rem; }
+}
+
+@media (max-width: 480px) {
+  .about-hero-eyebrow { font-size: 1.4rem; }
+  .about-hero-link { font-size: 1.6rem; }
+}
+
+/* ==========================================================================
+   About us: section titles (What we do, How it works)
+   Same size and left alignment as the hero title (.about-hero-title).
+   ========================================================================== */
+.about-title {
+  max-width: 1500px;
+  margin: 0 0 5vh;
+  font-size: clamp(3.4rem, 4.6vw, 8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: var(--letter-spacing);
+  text-wrap: balance;
+}
+
+.about-title em {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.015em;
+}
+
+@media (max-width: 1480px) { .about-title { margin-bottom: 4vh; } }
+@media (max-width: 1024px) { .about-title { margin-bottom: 3vh; } }
+
+/* ==========================================================================
+   About us: What we do (components/AboutUs.js)
+   Staggered 4-column grid. Children in order: card 1, logo, card 2, card 3, card 4.
+   ========================================================================== */
+.wwd {
+  padding-top: 4vh;
+  padding-bottom: 12vh;
+}
+
+/* Extra room between the title and the cards */
+.wwd .about-title { margin-bottom: max(72px, 9vh); }
+
+@media (max-width: 1024px) { .wwd .about-title { margin-bottom: 56px; } }
+@media (max-width: 600px)  { .wwd .about-title { margin-bottom: 36px; } }
+
+.wwd-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+/* Desktop only: checkerboard placement, with gaps left empty on purpose */
+@media (min-width: 1025px) {
+  .wwd-grid > :nth-child(1) { grid-area: 1 / 1; }
+  .wwd-grid > :nth-child(2) { grid-area: 1 / 2; } /* logo */
+  .wwd-grid > :nth-child(3) { grid-area: 1 / 3; }
+  .wwd-grid > :nth-child(4) { grid-area: 2 / 2; }
+  .wwd-grid > :nth-child(5) { grid-area: 2 / 4; }
+}
+
+.wwd-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
+  aspect-ratio: 1 / 1;
+  padding: 28px;
+  color: var(--white);
+  border-radius: var(--radius);
+  background-color: var(--dark);
+}
+
+.wwd-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wwd-card h3 {
+  width: auto;
+  margin: 0;
+  font-size: clamp(2.4rem, 2.2vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.wwd-num {
+  flex: 0 0 auto;
+  padding-top: .4em;
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, .45);
+}
+
+.wwd-card p {
+  max-width: 34ch;
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .72);
+  text-wrap: pretty;
+}
+
+/* Logo: the original wordmark, centred in its grid cell */
+.wwd-logo {
+  display: grid;
+  place-items: center;
+}
+
+.wwd-logo img {
+  display: block;
+  width: 80%;
+  max-width: 356px; /* the file's own width, so it never blurs */
+  height: auto;
+}
+
+@media (max-width: 1280px) {
+  .wwd-card { padding: 22px; }
+  .wwd-card p { font-size: 1.5rem; }
+}
+
+/* Tablet: logo on its own row (left-aligned), cards in a 2×2 grid */
+@media (max-width: 1024px) {
+  .wwd { padding-top: 3vh; padding-bottom: 9vh; }
+  .wwd-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wwd-grid > .wwd-logo { grid-column: 1 / -1; order: -1; place-items: center start; padding-bottom: 2vh; }
+  .wwd-logo img { width: 240px; }
+  .wwd-card { aspect-ratio: 5 / 4; }
+}
+
+/* Phone: one column, cards size to their text */
+@media (max-width: 600px) {
+  .wwd-grid { grid-template-columns: 1fr; gap: 12px; }
+  .wwd-logo img { width: 180px; }
+  .wwd-card {
+    aspect-ratio: auto;
+    min-height: 200px;
+    padding: 22px;
+    border-radius: 20px;
+  }
+  .wwd-card h3 { font-size: 2.4rem; }
+}
+
+/* ==========================================================================
+   About us: How it works (components/AboutUs.js)
+   Left-aligned timeline of steps, CTA below.
+   ========================================================================== */
+.hiw {
+  padding-top: 4vh;
+  padding-bottom: 14vh;
+}
+
+.hiw .about-title { margin-bottom: 2.4vh; }
+
+.hiw-intro {
+  margin: 0 0 6vh;
+  font-size: clamp(1.8rem, 1.6vw, 2.2rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+  opacity: var(--fade);
+}
+
+/* Timeline */
+.hiw-steps {
+  max-width: 720px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hiw-step {
+  position: relative;
+  padding-left: 48px;
+}
+
+.hiw-step + .hiw-step { margin-top: 44px; }
+
+/* Line from this dot down to the next one (14px = dot centre, 44px = step gap) */
+.hiw-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: calc(-44px - 14px);
+  left: 13px;
+  width: 2px;
+  background-color: var(--line);
+}
+
+/* Red dot, centred on the line */
+.hiw-dot {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--red);
+  box-shadow: 0 0 0 5px var(--bg);
+}
+
+.hiw-step h3 {
+  margin: 0 0 6px;
+  font-size: clamp(2.2rem, 1.9vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.hiw-step p {
+  max-width: 48ch;
+  margin: 0;
+  font-size: 1.7rem;
+  line-height: 1.45;
+  opacity: var(--fade);
+}
+
+/* CTA: opens the claim form pop-up */
+.hiw-cta { margin-top: 8vh; }
+
+.hiw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 7px 7px 7px 30px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--white);
+  border-radius: 100px;
+  background-color: var(--dark);
+  transition: background-color .2s ease;
+}
+
+.hiw-btn-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: var(--dark);
+  background-color: var(--white);
+  transition: transform .25s var(--ease), color .2s ease;
+}
+
+.hiw-btn:hover,
+.hiw-btn:focus-visible { color: var(--white); background-color: var(--red); }
+.hiw-btn:hover .hiw-btn-icon { color: var(--red); transform: translateX(3px); }
+
+@media (max-width: 1024px) {
+  .hiw { padding-bottom: 10vh; }
+  .hiw-intro { margin-bottom: 5vh; }
+}
+
+@media (max-width: 480px) {
+  .hiw-step { padding-left: 40px; }
+  .hiw-step + .hiw-step { margin-top: 34px; }
+  .hiw-step:not(:last-child)::after { bottom: calc(-34px - 14px); }
+  .hiw-step p { font-size: 1.6rem; }
+  .hiw-cta { margin-top: 6vh; }
+  .hiw-btn { gap: 20px; padding-left: 24px; font-size: 1.6rem; }
+  .hiw-btn-icon { width: 42px; height: 42px; }
+}
+
+/* ==========================================================================
+   Logo page (components/LogoKit.js)
+   Title uses the shared .about-title. One card per file: preview on top, info + download below.
+   ========================================================================== */
+.logo-kit {
+  padding-top: 4vh;
+  padding-bottom: 14vh;
+}
+
+.logo-kit .about-title { margin-bottom: 2.4vh; }
+
+.logo-kit-intro {
+  margin: 0 0 6vh;
+  font-size: clamp(1.8rem, 1.6vw, 2.2rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+  opacity: var(--fade);
+}
+
+.logo-kit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.logo-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.logo-card-preview {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: 32px;
+  background-color: var(--tag-bg);
+}
+
+/* Shown at native size or smaller, so the previews stay sharp */
+.logo-card-preview img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.logo-card-info {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px 28px;
+}
+
+.logo-card h2 {
+  margin: 0 0 6px;
+  font-size: clamp(2.2rem, 1.9vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.logo-card p {
+  max-width: 42ch;
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.45;
+  opacity: var(--fade);
+}
+
+.logo-card .logo-card-meta {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
+  opacity: .6;
+}
+
+.logo-card-btn {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 1024px) {
+  .logo-card-info { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 768px) {
+  .logo-kit { padding-bottom: 10vh; }
+  .logo-kit-intro { margin-bottom: 4vh; }
+  .logo-kit-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .logo-card { border-radius: 20px; }
+  .logo-card-preview { padding: 20px; }
+  .logo-card-info { padding: 20px; }
+  .logo-card-btn { width: 100%; justify-content: center; }
+}
