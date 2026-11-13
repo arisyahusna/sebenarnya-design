@@ -20,7 +20,8 @@ const agency = {
 export const navLinks = [
   { label: 'Utama', href: '/' },
   { label: 'Semak Fakta', href: '/article/' },
-  /*{ label: 'Tentang Kami', href: '/about-us/' },*/
+  { label: 'Tentang Kami', href: '/about-us/' },
+  { label: 'Logo', href: '/logo/' },
   { label: 'Salur Kepada Kami', href: '/submit-claim/' },
 ];
 
