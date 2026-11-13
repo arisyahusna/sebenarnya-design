@@ -179,6 +179,86 @@ export const viewershipStats = [
   { value: 200, unit: 'ribu', text: 'Hampir 200,000 mesej diproses oleh Aifa, pembantu semakan fakta AI, sejak Januari 2025.' },
 ];
 
+/* About us page (app/about-us) */
+// Hero (components/AboutUs.js). `title` is bold, `subtitle` is light, `accent` is the serif italic ending.
+export const aboutHero = {
+  title: 'Tentang Sebenarnya.my.',
+  subtitle: 'Portal semakan fakta rasmi Malaysia,',
+  accent: 'sejak 2017.',
+  lead:
+    'Dilancarkan oleh MCMC pada 14 Mac 2017, Sebenarnya.my menyemak berita tular, dakwaan dan khabar angin dengan merujuk sumber serta kenyataan rasmi agensi kerajaan. Matlamat kami mudah: membantu rakyat Malaysia semak dahulu, sebelum berkongsi.',
+};
+
+// What we do (components/AboutUs.js). Title reads: `titleStart` + serif italic `accent`, then `titleEnd` on a new line.
+// The four cards fill the grid in order; the logo sits between the first and second card.
+export const whatWeDo = {
+  title: 'Empat fungsi utama kami',
+
+  items: [
+    {
+      title: 'Maklumat sahih',
+      text: 'Dapatkan maklumat sahih dan maklum balas rasmi terus daripada agensi kerajaan yang berkaitan.',
+    },
+    {
+      title: 'Berita terkini',
+      text: 'Ikuti berita dan perkembangan terkini tentang isu yang sedang tular dan hangat diperkatakan.',
+    },
+    {
+      title: 'Semak dakwaan',
+      text: 'Semak kesahihan dakwaan, berita tular dan khabar angin sebelum ia dikongsi lebih jauh.',
+    },
+    {
+      title: 'Salurkan maklumat',
+      text: 'Salurkan maklumat yang anda ragui kepada kami, dan pasukan Sebenarnya.my akan menyemaknya.',
+    },
+  ],
+};
+
+// How it works (components/AboutUs.js).
+// `cta.href` opens the claim form pop-up (see components/ClaimForm.js).
+export const howItWorks = {
+  title: 'Bagaimana kami menyemak fakta',
+  intro: 'Daripada laporan anda sehingga hasil semakan diterbitkan, inilah enam langkah yang kami lalui.',
+  steps: [
+    { title: 'Terima laporan', text: 'Anda hantar dakwaan, pautan atau tangkapan skrin.' },
+    { title: 'Analisis awal', text: 'AI menyaring dan mengelaskan maklumat.' },
+    { title: 'Semakan agensi', text: 'Agensi berkaitan menyiasat laporan.' },
+    { title: 'Pengesahan', text: 'Agensi mengesahkan hasil siasatan.' },
+    { title: 'Penerbitan', text: 'Hasil yang diluluskan diterbitkan di Sebenarnya.my.' },
+    { title: 'Penyebaran', text: 'Hasil semakan dikongsi untuk membendung berita palsu.' },
+  ],
+};
+
+/* Logo page (app/logo, components/LogoKit.js) */
+// `src` is the preview, `file` is what gets downloaded, `filename` is the name it saves as.
+// icon.png is really a WebP file, so the icon downloads from icon-download.png (a true PNG copy).
+export const logoPage = {
+  title: 'Logo Sebenarnya.my',
+  intro: 'Muat turun logo dan ikon Sebenarnya.my untuk digunakan dalam bahan media, pembentangan dan hebahan.',
+  items: [
+    {
+      name: 'Logo',
+      text: 'Logo penuh bersama slogan “Tidak Pasti Jangan Kongsi”.',
+      src: withBase('/images/logo/logo.png'),
+      file: withBase('/images/logo/logo.png'),
+      filename: 'sebenarnya-logo.png',
+      width: 356,
+      height: 107,
+      meta: 'PNG · 356 × 107 px · 37 KB',
+    },
+    {
+      name: 'Ikon',
+      text: 'Ikon segi empat untuk ruang kecil seperti gambar profil dan ikon aplikasi.',
+      src: withBase('/images/logo/icon-download.png'),
+      file: withBase('/images/logo/icon-download.png'),
+      filename: 'sebenarnya-ikon.png',
+      width: 134,
+      height: 134,
+      meta: 'PNG · 134 × 134 px · 20 KB',
+    },
+  ],
+};
+
 // Collaborators ticker (components/Collaborators.js)
 const partnerLogo = (name) => withBase(`/images/logo/partners/${name}.png`);
 

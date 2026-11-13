@@ -10,6 +10,18 @@ const blocks = [
   ['.claim-caption', 0.22],
   ['.latest .section-head', 0.28],
   ['.slider', 0.36],
+  // About us hero
+  ['.about-hero-eyebrow', 0],
+  ['.about-hero-title', 0.04],
+  ['.about-hero-row', 0.14],
+  ['.about-hero-media', 0.24],
+  ['.about-title', 0],
+  ['.hiw-intro', 0.08],
+  ['.hiw-cta', 0],
+  // Logo page
+  ['.logo-kit-intro', 0.08],
+  ['.logo-card:nth-child(1)', 0.14],
+  ['.logo-card:nth-child(2)', 0.22],
   // Stories
   ['.stories-head', 0],
   ['.stories-viewport', 0.08],
@@ -66,6 +78,12 @@ export default function ScrollMotion() {
     document.querySelectorAll('.bento-row').forEach((row) => {
       row.querySelectorAll('.bento-card').forEach((card, i) => register(card, i * 0.12));
     });
+
+    // About us "What we do" cards + logo: staggered left to right
+    document.querySelectorAll('.wwd-grid > *').forEach((el, i) => register(el, i * 0.08));
+
+    // About us "How it works" steps: each one a beat after the last as they scroll in
+    document.querySelectorAll('.hiw-step').forEach((el) => register(el, 0.06));
 
     // Post cards: staggered across the 3 columns, plus cards added by "Load more"
     const grid = document.querySelector('.posts-grid');
