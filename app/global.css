@@ -630,26 +630,18 @@ input::placeholder { color: var(--text); }
   }
 }
 
-/* Hero: fills the rest of the first screen below the header
-   (--header-h is measured in components/Header.js) */
+/* Hero */
 .hero {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - var(--header-h, 140px));
-  min-height: calc(100svh - var(--header-h, 140px));
   color: var(--text);
   background-color: var(--bg);
 }
 
 .hero-inner {
-  display: flex;
-  flex: 1 0 auto;
-  align-items: center;
   overflow: hidden;
   padding-top: 4vh;
 }
 
-.hero-content { width: 100%; margin-bottom: 9vh; }
+.hero-content { margin-bottom: 9vh; }
 
 .hero-title {
   max-width: 1500px;
