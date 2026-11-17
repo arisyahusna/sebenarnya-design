@@ -154,7 +154,7 @@ export default function Carousel() {
       {/* Same container as other section headings, so it lines up with "Latest fact-checks" */}
       <div className="container carousel-head">
         <div className="section-head">
-          <small className="section-label big-title">Semakan Fakta <span>Popular</span></small>
+          <small className="section-label big-title"><span>Semakan Fakta Popular</span></small>
         </div>
       </div>
       <div className="gal" ref={galRef} aria-roledescription="carousel" aria-label="Fokus utama">
