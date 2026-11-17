@@ -1,7 +1,16 @@
 import './global.css';
+import { Montserrat } from 'next/font/google';
 import Chatbot from '@/components/Chatbot';
 import ClaimForm from '@/components/ClaimForm';
 import { withBase } from '@/lib/basePath';
+
+// Montserrat for every page; global.css reads it through var(--font-montserrat)
+const montserrat = Montserrat({
+  subsets: ['latin', 'latin-ext'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-montserrat',
+});
 
 const description =
   'Sebenarnya.my membantu orang ramai mendapatkan maklumat sahih dan maklum balas rasmi, mengikuti berita dan perkembangan terkini, menyemak dakwaan serta menyalurkan maklumat yang diragui.';
@@ -27,7 +36,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ms">
+    <html lang="ms" className={montserrat.variable}>
       <body>
         {children}
         {/* AIFA chatbot: floating on every page */}
