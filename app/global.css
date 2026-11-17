@@ -122,15 +122,15 @@ input::placeholder { color: var(--text); }
 .big-title,
 .section-label.big-title {
   margin: 0;
-  font-size: 6.6rem;
+  font-size: 5.28rem;
   line-height: 1.25;
 }
 
-@media (max-width: 1600px) { .big-title, .section-label.big-title { font-size: 6rem; } }
-@media (max-width: 1280px) { .big-title, .section-label.big-title { font-size: 5.5rem; } }
-@media (max-width: 768px)  { .big-title, .section-label.big-title { font-size: 4.8rem; } }
-@media (max-width: 480px)  { .big-title, .section-label.big-title { font-size: 3.4rem; } }
-@media (max-width: 320px)  { .big-title, .section-label.big-title { font-size: 3.2rem; } }
+@media (max-width: 1600px) { .big-title, .section-label.big-title { font-size: 4.8rem; } }
+@media (max-width: 1280px) { .big-title, .section-label.big-title { font-size: 4.4rem; } }
+@media (max-width: 768px)  { .big-title, .section-label.big-title { font-size: 3.84rem; } }
+@media (max-width: 480px)  { .big-title, .section-label.big-title { font-size: 2.72rem; } }
+@media (max-width: 320px)  { .big-title, .section-label.big-title { font-size: 2.56rem; } }
 
 /* Shared: small section heading with top border */
 .section-head {
@@ -630,23 +630,31 @@ input::placeholder { color: var(--text); }
   }
 }
 
-/* Hero */
+/* Hero: fills the rest of the first screen below the header
+   (--header-h is measured in components/Header.js) */
 .hero {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-h, 140px));
+  min-height: calc(100svh - var(--header-h, 140px));
   color: var(--text);
   background-color: var(--bg);
 }
 
 .hero-inner {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
   overflow: hidden;
   padding-top: 4vh;
 }
 
-.hero-content { margin-bottom: 9vh; }
+.hero-content { width: 100%; margin-bottom: 9vh; }
 
 .hero-title {
   max-width: 1500px;
   margin: 0 0 6vh;
-  font-size: clamp(3.4rem, 4.6vw, 8rem);
+  font-size: clamp(2.72rem, 3.68vw, 6.4rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: var(--letter-spacing);
@@ -655,11 +663,12 @@ input::placeholder { color: var(--text); }
 .hero-title span { font-weight: 700; }
 .hero-tagline { font-style: normal; }
 
-/* Hero: claim search form, full width of the container */
+/* Hero: claim search form; the max-width caps the whole grey pill (input + button) */
 .claim-form {
   box-sizing: border-box;
   flex: 1 1 100%;
   width: 100%;
+  max-width: 1100px;
   margin-right: 0;
 }
 
