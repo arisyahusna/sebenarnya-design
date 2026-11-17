@@ -14,14 +14,15 @@ const slides = heroSlides.map((s) => {
 const COUNT = slides.length;
 const DELAY = 6000; // autoplay interval, matches the dot fill animation in global.css
 const GAP = 20; // .gtrack gap
+const START = Math.min(2, COUNT - 1); // open on the 3rd slide
 
 const pad = (n) => String(n).padStart(2, '0');
 
 export default function Carousel() {
   const galRef = useRef(null);
   const trackRef = useRef(null);
-  const indexRef = useRef(0);
-  const [index, setIndex] = useState(0);
+  const indexRef = useRef(START);
+  const [index, setIndex] = useState(START);
   const [tick, setTick] = useState(0); // bumps on every move so the timer and dot fill restart
   const [playing, setPlaying] = useState(true);
 
@@ -158,7 +159,8 @@ export default function Carousel() {
         </div>
       </div>
       <div className="gal" ref={galRef} aria-roledescription="carousel" aria-label="Fokus utama">
-        <div className="gtrack" ref={trackRef}>
+        {/* Initial offset in CSS so the page loads already on START, with no slide-in from the first card */}
+        <div className="gtrack" ref={trackRef} style={{ transform: `translateX(calc(${-START} * (var(--w) + ${GAP}px)))` }}>
           {slides.map((s, i) => (
             <div
               key={s.href}

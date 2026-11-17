@@ -2102,9 +2102,6 @@ input::placeholder { color: var(--text); }
   letter-spacing: normal;
 }
 
-/* No divider line above this heading */
-.hero-carousel .carousel-head .section-head { border-top: 0; }
-
 .hero-carousel *, .hero-carousel *::before, .hero-carousel *::after { box-sizing: border-box; }
 .hero-carousel img { display: block; }
 .hero-carousel button { font: inherit; color: inherit; letter-spacing: inherit; }
