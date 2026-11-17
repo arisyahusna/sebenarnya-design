@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from './Logo';
 import { navLinks } from '@/data/content';
 import { withBase } from '@/lib/basePath';
@@ -22,21 +22,8 @@ export default function Header() {
     return () => desktop.removeEventListener('change', close);
   }, []);
 
-  // Expose the header height as --header-h so the hero can fill the rest of the screen
-  const headerRef = useRef(null);
-  useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const update = () =>
-      document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
   return (
-    <header className="header" ref={headerRef}>
+    <header className="header">
       <div className="header-inner container">
         <div className="brand">
           <Logo />
