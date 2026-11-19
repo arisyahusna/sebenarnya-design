@@ -324,12 +324,8 @@ export const partners = [
 
 /* Articles page (app/article/page.js) */
 
-// Filter bar, in display order. `dot` = coloured dot shown in the chip.
+// Topic labels for the `categories` ids below (used by search and the article page)
 export const articleCategories = [
-  { id: 'palsu', label: 'Palsu', dot: '#e51c23' },
-  { id: 'benar', label: 'Benar', dot: '#1d8a4e' },
-  { id: 'makluman', label: 'Makluman', dot: '#0071e3' },
-  { id: 'waspada', label: 'Waspada', dot: '#f56300' },
   { id: 'bencana', label: 'Bencana' },
   { id: 'ekonomi', label: 'Ekonomi' },
   { id: 'keselamatan', label: 'Keselamatan' },
@@ -343,17 +339,17 @@ export const articleCategories = [
   { id: 'kepenggunaan', label: 'Kepenggunaan' },
 ];
 
-// Tag shown on each card
+// Tag shown on each card. Also the filter bar on the articles page, in this order (after "Semua").
 export const articleStatus = {
   palsu: { label: 'Palsu', color: '#e51c23' },
-  makluman: { label: 'Makluman', color: '#0071e3' },
+  penjelasan: { label: 'Penjelasan', color: '#1d8a4e' },
   waspada: { label: 'Waspada', color: '#f56300' },
-  benar: { label: 'Benar', color: '#1d8a4e' },
+  makluman: { label: 'Makluman', color: '#0071e3' },
 };
 
 const agencyLogo = (name) => withBase(`/images/authors/agency-${name}.webp`);
 
-// `status` = card tag (palsu / makluman / benar / waspada)
+// `status` = card tag (palsu / penjelasan / waspada / makluman)
 // `categories` = filter-bar ids this article also appears under
 // `date` = YYYY-MM-DD
 // `views` = view count, used by the "Paling popular" sort (placeholder figures until real analytics are wired up)
@@ -393,7 +389,7 @@ export const articles = [
     explanation: 'Sebarang penutupan sekolah akan diumumkan secara rasmi oleh KPM atau Jabatan Pendidikan Negeri. Ibu bapa dinasihatkan untuk merujuk pengumuman rasmi sekolah dan tidak mempercayai mesej yang tidak bersumber.',
     image: post('school2.jpg'),
     alt: 'Ibu bapa menunggu di ruang legar',
-    status: 'benar',
+    status: 'penjelasan',
     categories: ['pendidikan'],
     date: '2026-10-30',
     views: 6200,
@@ -445,7 +441,7 @@ export const articles = [
     explanation: 'Gaji penjawat awam akan dibayar mengikut jadual biasa yang telah diumumkan. Sebarang perubahan tarikh pembayaran hanya akan dimaklumkan melalui pekeliling dan saluran rasmi JPA.',
     image: post('sebenarnya-fc-digital-desk.jpg'),
     alt: 'Telefon pintar dan buku nota di atas meja',
-    status: 'benar',
+    status: 'penjelasan',
     categories: ['urus-tadbir'],
     date: '2026-09-20',
     views: 5100,
@@ -484,7 +480,7 @@ export const articles = [
     explanation: 'Bayaran zakat secara dalam talian adalah sah apabila dibuat melalui portal rasmi pusat zakat negeri. Orang ramai dinasihatkan agar tidak membuat bayaran melalui akaun peribadi atau pautan yang tidak disahkan.',
     image: post('sebenarnya-fc-senior-dialogue.jpg'),
     alt: 'Warga emas berbual di ruang komuniti',
-    status: 'benar',
+    status: 'penjelasan',
     categories: ['agama'],
     date: '2026-03-18',
     views: 2600,

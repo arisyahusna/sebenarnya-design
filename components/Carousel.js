@@ -16,46 +16,90 @@ const DELAY = 6000; // autoplay interval, matches the dot fill animation in glob
 const GAP = 20; // .gtrack gap
 const START = Math.min(2, COUNT - 1); // open on the 3rd slide
 
+// Infinite loop: copies of the last/first slides sit before/after the real ones, so the
+// space beside the current slide is never empty. After moving onto a copy, the track
+// jumps (without animation) to the matching real slide.
+const CLONES = Math.min(2, COUNT);
+const loop = [
+  ...slides.slice(-CLONES).map((s, k) => ({ ...s, i: COUNT - CLONES + k, clone: true })),
+  ...slides.map((s, i) => ({ ...s, i })),
+  ...slides.slice(0, CLONES).map((s, k) => ({ ...s, i: k, clone: true })),
+];
+
+// Track position (index into `loop`) -> real slide index
+const realIndex = (p) => (((p - CLONES) % COUNT) + COUNT) % COUNT;
+const isReal = (p) => p >= CLONES && p < CLONES + COUNT;
+
 const pad = (n) => String(n).padStart(2, '0');
 
 export default function Carousel() {
   const galRef = useRef(null);
   const trackRef = useRef(null);
-  const indexRef = useRef(START);
-  const [index, setIndex] = useState(START);
+  const posRef = useRef(START + CLONES);
+  const [pos, setPos] = useState(START + CLONES);
   const [tick, setTick] = useState(0); // bumps on every move so the timer and dot fill restart
   const [playing, setPlaying] = useState(true);
+  const index = realIndex(pos);
 
   const slideW = () => {
     const first = trackRef.current?.firstElementChild;
     return first ? first.getBoundingClientRect().width + GAP : 0;
   };
 
-  const go = useCallback((i) => {
-    const next = (i + COUNT) % COUNT;
-    indexRef.current = next;
-    setIndex(next);
+  // Place the track at a position instantly, with no slide animation
+  const jump = (p) => {
+    const track = trackRef.current;
+    track.style.transition = 'none';
+    track.style.transform = `translateX(${-p * slideW()}px)`;
+    void track.offsetHeight; // apply before the transition comes back
+    track.style.transition = '';
+    posRef.current = p;
+  };
+
+  // If sitting on a copy, swap to the matching real slide first
+  const settle = () => {
+    if (!isReal(posRef.current)) jump(realIndex(posRef.current) + CLONES);
+    return posRef.current;
+  };
+
+  const move = useCallback((p) => {
+    posRef.current = p;
+    setPos(p);
     setTick((t) => t + 1);
   }, []);
 
+  const step = useCallback((d) => move(settle() + d), [move]);
+  const goTo = useCallback((i) => { settle(); move(i + CLONES); }, [move]);
+
   // Move the track
   useEffect(() => {
-    trackRef.current.style.transform = `translateX(${-index * slideW()}px)`;
-  }, [index, tick]);
+    trackRef.current.style.transform = `translateX(${-pos * slideW()}px)`;
+  }, [pos, tick]);
+
+  // After sliding onto a copy, swap to the real slide
+  useEffect(() => {
+    const track = trackRef.current;
+    const onEnd = (e) => {
+      if (e.target !== track || e.propertyName !== 'transform' || isReal(posRef.current)) return;
+      setPos(settle());
+    };
+    track.addEventListener('transitionend', onEnd);
+    return () => track.removeEventListener('transitionend', onEnd);
+  }, []);
 
   // Autoplay
   useEffect(() => {
     if (!playing) return;
-    const t = setTimeout(() => go(indexRef.current + 1), DELAY);
+    const t = setTimeout(() => step(1), DELAY);
     return () => clearTimeout(t);
-  }, [playing, index, tick, go]);
+  }, [playing, tick, step]);
 
   // Re-align on resize
   useEffect(() => {
-    const onResize = () => go(indexRef.current);
+    const onResize = () => jump(posRef.current);
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [go]);
+  }, []);
 
   // Drag / swipe with mouse, pen or finger; trackpad two-finger swipe
   useEffect(() => {
@@ -67,7 +111,7 @@ export default function Carousel() {
 
     const down = (e) => {
       if (e.button !== 0 || e.target.closest('.harr')) return;
-      start = { x: e.clientX, y: e.clientY, base: -indexRef.current * slideW(), id: e.pointerId };
+      start = { x: e.clientX, y: e.clientY, id: e.pointerId };
       moved = false;
     };
 
@@ -81,10 +125,9 @@ export default function Carousel() {
         moved = true;
         gal.classList.add('drag');
         try { gal.setPointerCapture(start.id); } catch {}
+        start.base = -settle() * slideW();
       }
-      const i = indexRef.current;
-      const edge = (i === 0 && dx > 0) || (i === COUNT - 1 && dx < 0) ? 0.35 : 1;
-      track.style.transform = `translateX(${start.base + dx * edge}px)`;
+      track.style.transform = `translateX(${start.base + dx}px)`;
     };
 
     const end = (e) => {
@@ -94,10 +137,9 @@ export default function Carousel() {
       gal.classList.remove('drag');
       if (!moved) return;
       const w = slideW();
-      const i = indexRef.current;
-      if (dx < -w * 0.12) go(Math.min(i + 1, COUNT - 1));
-      else if (dx > w * 0.12) go(Math.max(i - 1, 0));
-      else go(i);
+      if (dx < -w * 0.12) step(1);
+      else if (dx > w * 0.12) step(-1);
+      else step(0);
     };
 
     // Swallow the click that follows a drag; otherwise a click on a slide opens it
@@ -114,8 +156,8 @@ export default function Carousel() {
     };
 
     const key = (e) => {
-      if (e.key === 'ArrowRight') go(indexRef.current + 1);
-      if (e.key === 'ArrowLeft') go(indexRef.current - 1);
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'ArrowLeft') step(-1);
     };
 
     const wheel = (e) => {
@@ -123,7 +165,7 @@ export default function Carousel() {
       e.preventDefault();
       if (wheelLock) return;
       wheelLock = true;
-      go(indexRef.current + (e.deltaX > 0 ? 1 : -1));
+      step(e.deltaX > 0 ? 1 : -1);
       setTimeout(() => { wheelLock = false; }, 800);
     };
 
@@ -143,10 +185,10 @@ export default function Carousel() {
       gal.removeEventListener('keydown', key);
       gal.removeEventListener('wheel', wheel);
     };
-  }, [go]);
+  }, [step]);
 
   const togglePlay = () => {
-    if (!playing) go(indexRef.current + 1);
+    if (!playing) step(1);
     setPlaying(!playing);
   };
 
@@ -160,15 +202,17 @@ export default function Carousel() {
       </div>
       <div className="gal" ref={galRef} aria-roledescription="carousel" aria-label="Fokus utama">
         {/* Initial offset in CSS so the page loads already on START, with no slide-in from the first card */}
-        <div className="gtrack" ref={trackRef} style={{ transform: `translateX(calc(${-START} * (var(--w) + ${GAP}px)))` }}>
-          {slides.map((s, i) => (
+        <div className="gtrack" ref={trackRef} style={{ transform: `translateX(calc(${-(START + CLONES)} * (var(--w) + ${GAP}px)))` }}>
+          {loop.map((s, p) => (
             <div
-              key={s.href}
-              className={`slide hs${s.position ? ' dk' : ''}${s.wide ? ' wd' : ''}${i === index ? ' cur' : ''}`}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`${i + 1} daripada ${COUNT}`}
-              data-i={i}
+              key={p}
+              className={`slide hs${s.position ? ' dk' : ''}${s.wide ? ' wd' : ''}${s.i === index ? ' cur' : ''}`}
+              role={s.clone ? undefined : 'group'}
+              aria-roledescription={s.clone ? undefined : 'slide'}
+              aria-label={s.clone ? undefined : `${s.i + 1} daripada ${COUNT}`}
+              aria-hidden={s.clone || undefined}
+              inert={s.clone || undefined}
+              data-i={s.i}
             >
               <img
                 src={s.image}
@@ -195,10 +239,10 @@ export default function Carousel() {
           ))}
         </div>
 
-        <button className="harr l" aria-label="Slaid sebelumnya" onClick={() => go(index - 1)}>
+        <button className="harr l" aria-label="Slaid sebelumnya" onClick={() => step(-1)}>
           <svg width="10" height="16" viewBox="0 0 10 16"><path d="M8 2L2 8l6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
-        <button className="harr r" aria-label="Slaid seterusnya" onClick={() => go(index + 1)}>
+        <button className="harr r" aria-label="Slaid seterusnya" onClick={() => step(1)}>
           <svg width="10" height="16" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
         <span className="hcnt"><b>{pad(index + 1)}</b> / {pad(COUNT)}</span>
@@ -213,7 +257,7 @@ export default function Carousel() {
               aria-label={`Slaid ${i + 1}`}
               aria-selected={i === index}
               className={i === index ? 'on run' : undefined}
-              onClick={() => go(i)}
+              onClick={() => goTo(i)}
             >
               <i key={i === index ? tick : undefined} />
             </button>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { articles, articleCategories, articleStatus } from '@/data/content';
+import { articles, articleStatus } from '@/data/content';
 import { matchesQuery } from '@/lib/searchArticles';
 import { articleHref, formatDate } from '@/lib/articles';
 
@@ -46,7 +46,7 @@ function filterArticles(query, category, range, from, to, sort) {
   const { compare } = SORT_OPTIONS.find((o) => o.id === sort) || SORT_OPTIONS[0];
   return articles
     .filter((a) => matchesQuery(a, query))
-    .filter((a) => category === 'all' || a.status === category || a.categories.includes(category))
+    .filter((a) => category === 'all' || a.status === category)
     .filter((a) => (!min || a.date >= min) && (!max || a.date <= max))
     .sort(compare);
 }
@@ -179,7 +179,10 @@ export default function Articles() {
           aria-label="Tapis mengikut kategori"
           onScroll={updateScroll}
         >
-          {[{ id: 'all', label: 'Semua' }, ...articleCategories].map((c) => (
+          {[
+            { id: 'all', label: 'Semua' },
+            ...Object.entries(articleStatus).map(([id, s]) => ({ id, label: s.label, dot: s.color })),
+          ].map((c) => (
             <button
               key={c.id}
               type="button"
