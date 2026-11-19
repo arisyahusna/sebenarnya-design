@@ -1481,20 +1481,8 @@ input::placeholder { color: var(--text); }
   box-shadow: 0 24px 48px rgba(0, 0, 0, .28);
 }
 
-/* Subtle dot pattern on the right half of text cards */
-.bento-card.dots::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 48%;
-  height: 100%;
-  content: '';
-  background-image: radial-gradient(rgba(255, 255, 255, .14) 1.2px, transparent 1.2px);
-  background-size: 15px 15px;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 100%);
-  mask-image: linear-gradient(to left, #000 40%, transparent 100%);
-}
+/* Text card: plain black */
+.bento-card.dots { background-color: #000; }
 
 .bento-card.image { padding: 0; }
 

@@ -54,9 +54,9 @@ export default function Viewership() {
       <div className="viewership-inner">
         <div className="viewership-side">
           <p className="viewership-kicker">
-            Pusat semakan fakta
+            <strong>Pusat semakan fakta</strong>
             <br />
-            MCMC sejak 2017
+            <strong>MCMC sejak 2017</strong>
           </p>
         </div>
 

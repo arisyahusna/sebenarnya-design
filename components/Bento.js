@@ -1,11 +1,6 @@
 import { Fragment } from 'react';
 import { withBase } from '@/lib/basePath';
 
-const metrics = [
-  { value: '10K', plus: true, label: 'Dakwaan Tular Disangkal' },
-  { value: '33M', label: 'Rakyat Malaysia Dilindungi' },
-  { value: 'No. 1', red: true, label: 'Anugerah Global PBB' },
-];
 
 export default function Bento() {
   return (
@@ -17,7 +12,6 @@ export default function Bento() {
         <div className="bento-card dots">
           <div>
             <div className="badge">
-              <img src={withBase('/images/bento/gold-award-medal.webp')} alt="Pingat Emas WSIS Pertubuhan Bangsa-Bangsa Bersatu" className="badge-medal" loading="lazy" />
               <span>Geneva &bull; WSIS Pertubuhan Bangsa-Bangsa Bersatu</span>
             </div>
             <h3 className="headline">
@@ -30,24 +24,10 @@ export default function Bento() {
               meraih penghormatan antarabangsa tertinggi di Anugerah WSIS PBB di Geneva — diiktiraf sebagai perisai utama
               Malaysia yang melindungi <strong>33 juta rakyat</strong> bersama <strong>lebih 20 agensi persekutuan</strong>.
             </p>
-            <div className="metrics">
-              {metrics.map((metric, i) => (
-                <Fragment key={metric.label}>
-                  {i > 0 && <div className="metric-line" />}
-                  <div className="metric">
-                    <span className={metric.red ? 'metric-value red' : 'metric-value'}>
-                      {metric.value}
-                      {metric.plus && <span className="metric-plus">+</span>}
-                    </span>
-                    <span className="metric-label">{metric.label}</span>
-                  </div>
-                </Fragment>
-              ))}
-            </div>
           </div>
           <div>
-            <a href={withBase('/tentang-kami/')} className="pill-btn">
-              <span>Terokai Kisah WSIS</span>
+            <a href={withBase('/about-us/#berita-galeri')} className="pill-btn">
+              <span>Ketahui lebih lanjut</span>
               <span className="pill-icon">→</span>
             </a>
           </div>
