@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import Logo from './Logo';
 import { navLinks } from '@/data/content';
 import { withBase } from '@/lib/basePath';
@@ -44,13 +44,18 @@ export default function Header() {
             </span>
           </button>
 
-          <nav className={open ? 'menu open' : 'menu'}>
+          {/* Following a link closes the mobile menu (matters for #anchors on the same page) */}
+          <nav className={open ? 'menu open' : 'menu'} onClick={(e) => e.target.closest('a') && setOpen(false)}>
             <ul>
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={withBase(link.href)}>{link.label}</a>
-                </li>
-              ))}
+              {navLinks.map((link) =>
+                link.children ? (
+                  <NavDropdown key={link.href} link={link} />
+                ) : (
+                  <li key={link.href}>
+                    <a href={withBase(link.href)}>{link.label}</a>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
 
@@ -72,5 +77,60 @@ export default function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+// Nav link with a dropdown. On desktop the panel opens on hover (CSS) or with the arrow button;
+// Escape, clicking outside or tabbing away closes it. In the mobile menu the items are always listed.
+function NavDropdown({ link }) {
+  const [open, setOpen] = useState(false);
+  const itemRef = useRef(null);
+  const buttonRef = useRef(null);
+  const panelId = useId();
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOutside = (e) => !itemRef.current.contains(e.target) && setOpen(false);
+    document.addEventListener('pointerdown', closeOutside);
+    return () => document.removeEventListener('pointerdown', closeOutside);
+  }, [open]);
+
+  return (
+    <li
+      ref={itemRef}
+      className={open ? 'has-sub sub-open' : 'has-sub'}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape' && open) {
+          setOpen(false);
+          buttonRef.current.focus();
+        }
+      }}
+      onBlur={(e) => !itemRef.current.contains(e.relatedTarget) && setOpen(false)}
+    >
+      <a href={withBase(link.href)}>{link.label}</a>
+      <button
+        ref={buttonRef}
+        type="button"
+        className="sub-toggle"
+        aria-expanded={open}
+        aria-controls={panelId}
+        aria-label={`Submenu ${link.label}`}
+        onClick={() => setOpen(!open)}
+      >
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="m3 4.5 3 3 3-3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      <ul className="submenu" id={panelId}>
+        {link.children.map((child) => (
+          <li key={child.href}>
+            <a href={withBase(child.href)} onClick={() => setOpen(false)}>
+              {child.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
   );
 }

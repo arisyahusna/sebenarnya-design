@@ -18,7 +18,10 @@ const blocks = [
   ['.about-title', 0],
   ['.hiw-intro', 0.08],
   ['.hiw-cta', 0],
-  // Logo page
+  // About us: news and gallery
+  ['.news-gallery-intro', 0.08],
+  ['.news-gallery-sub', 0],
+  // About us: logo downloads
   ['.logo-kit-intro', 0.08],
   ['.logo-card:nth-child(1)', 0.14],
   ['.logo-card:nth-child(2)', 0.22],
@@ -84,6 +87,10 @@ export default function ScrollMotion() {
 
     // About us "How it works" steps: each one a beat after the last as they scroll in
     document.querySelectorAll('.hiw-step').forEach((el) => register(el, 0.06));
+
+    // About us news cards and gallery photos: staggered left to right
+    document.querySelectorAll('.news-list > li').forEach((el, i) => register(el, i * 0.08));
+    document.querySelectorAll('.gallery-grid > li').forEach((el, i) => register(el, (i % 3) * 0.08));
 
     // Post cards: staggered across the 3 columns, plus cards added by "Load more"
     const grid = document.querySelector('.posts-grid');

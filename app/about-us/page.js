@@ -13,7 +13,7 @@ export default function AboutPage() {
       <Header />
 
       <main className="main">
-        {/* Hero, Who We Are, What We Do, How It Works */}
+        {/* Hero, Who We Are, What We Do, How It Works, News and Gallery, Logo downloads */}
         <AboutUs />
       </main>
 

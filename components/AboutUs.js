@@ -1,9 +1,10 @@
-import { aboutHero as hero, whatWeDo, howItWorks } from '@/data/content';
+import { aboutHero as hero, whatWeDo, howItWorks, newsGallery } from '@/data/content';
 import { withBase } from '@/lib/basePath';
+import LogoKit from './LogoKit';
 
 const pad = (n) => String(n).padStart(2, '0');
 
-// About us page content: Hero, (Who We Are), What We Do, How It Works
+// About us page content: Hero, (Who We Are), What We Do, How It Works, News and Gallery, Logo downloads
 export default function AboutUs() {
   return (
     <>
@@ -14,6 +15,12 @@ export default function AboutUs() {
       <WhatWeDo />
 
       <HowItWorks />
+
+      {/* News and gallery (anchor: /about-us/#berita-galeri) */}
+      <NewsGallery />
+
+      {/* Logo and icon downloads (anchor: /about-us/#logo) */}
+      <LogoKit />
     </>
   );
 }
@@ -92,6 +99,46 @@ function HowItWorks() {
           </li>
         ))}
       </ol>
+    </section>
+  );
+}
+
+// News and Gallery: latest news cards, then a photo grid
+function NewsGallery() {
+  const { news, gallery } = newsGallery;
+
+  return (
+    <section className="news-gallery container" id="berita-galeri" aria-labelledby="news-gallery-title">
+      <h2 className="about-title" id="news-gallery-title">
+        {newsGallery.title}
+      </h2>
+      <p className="news-gallery-intro">{newsGallery.intro}</p>
+
+      <h3 className="news-gallery-sub">Berita</h3>
+      <ul className="news-list">
+        {news.map((item) => (
+          <li className="news-card" key={item.title}>
+            <img src={item.image} alt={item.alt} loading="lazy" />
+            <div className="news-card-body">
+              <span className="news-tag">{item.tag}</span>
+              <h4>{item.title}</h4>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <h3 className="news-gallery-sub">Galeri</h3>
+      <ul className="gallery-grid">
+        {gallery.map((item) => (
+          <li className={`gallery-item ${item.size}`} key={item.image}>
+            <figure>
+              <img src={item.image} alt={item.alt} loading="lazy" />
+              <figcaption>{item.caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

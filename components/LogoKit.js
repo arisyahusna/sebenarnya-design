@@ -1,12 +1,12 @@
 import { logoPage } from '@/data/content';
 
-// Logo page: title, intro, and a card per file with a preview and a download button
+// Logo downloads (section on the About Us page): title, intro, and a card per file with a preview and a download button
 export default function LogoKit() {
   return (
-    <section className="logo-kit container" aria-labelledby="logo-kit-title">
-      <h1 className="about-title" id="logo-kit-title">
+    <section className="logo-kit container" id="logo" aria-labelledby="logo-kit-title">
+      <h2 className="about-title" id="logo-kit-title">
         {logoPage.title}
-      </h1>
+      </h2>
       <p className="logo-kit-intro">{logoPage.intro}</p>
 
       <div className="logo-kit-grid">
@@ -18,7 +18,7 @@ export default function LogoKit() {
 
             <div className="logo-card-info">
               <div>
-                <h2>{item.name}</h2>
+                <h3>{item.name}</h3>
                 <p>{item.text}</p>
                 <p className="logo-card-meta">{item.meta}</p>
               </div>

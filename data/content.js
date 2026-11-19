@@ -17,11 +17,18 @@ const agency = {
 };
 
 /* Header */
+// `children` = dropdown items under that link (in-page sections use #anchors)
 export const navLinks = [
   { label: 'Utama', href: '/' },
-  { label: 'Semak Fakta', href: '/article/' },
-  { label: 'Tentang Kami', href: '/about-us/' },
-  { label: 'Logo', href: '/logo/' },
+  { label: 'Artikel', href: '/article/' },
+  {
+    label: 'Tentang Kami',
+    href: '/about-us/',
+    children: [
+      { label: 'Berita dan Galeri', href: '/about-us/#berita-galeri' },
+      { label: 'Logo', href: '/about-us/#logo' },
+    ],
+  },
   { label: 'Salur Kepada Kami', href: '/submit-claim/' },
 ];
 
@@ -104,7 +111,7 @@ export const socialLinks = [
 /* Footer */
 export const footerColumns = [
   {
-    title: 'Teroka',
+    title: 'Semak & Lapor',
     links: [
       { label: 'Semak Fakta', href: '/article/' },
       { label: 'AIFA', href: '/aifa/' },
@@ -116,7 +123,7 @@ export const footerColumns = [
     title: 'Sebenarnya.my',
     links: [
       { label: 'Tentang Kami', href: '/about-us/' },
-      { label: 'Hubungi Kami', href: '/contact/' },
+      { label: 'Berita dan Galeri', href: '/about-us/#berita-galeri' },
     ],
   },
 ];
@@ -229,7 +236,47 @@ export const howItWorks = {
   ],
 };
 
-/* Logo page (app/logo, components/LogoKit.js) */
+// News and gallery (components/AboutUs.js), section #berita-galeri on the About Us page.
+// The WSIS entry repeats the homepage award story; the other news entries and all gallery
+// captions are SAMPLE CONTENT for the design - replace them with real news and event photos.
+// Gallery `size`: 'wide' = landscape tile (2 columns), 'tall' = portrait tile.
+export const newsGallery = {
+  title: 'Berita dan Galeri',
+  intro: 'Ikuti perkembangan terkini, pengiktirafan dan aktiviti Sebenarnya.my bersama masyarakat.',
+  news: [
+    {
+      tag: 'Anugerah',
+      title: 'Sebenarnya.my diiktiraf di Anugerah WSIS PBB, Geneva',
+      text: 'Pengiktirafan antarabangsa tertinggi dalam kepercayaan digital dan semakan fakta awam, bersama lebih 20 agensi persekutuan.',
+      image: withBase('/images/bento/wsis-prize-award.webp'),
+      alt: 'Trofi pemenang Anugerah WSIS di Geneva, Switzerland',
+    },
+    {
+      tag: 'Inisiatif',
+      title: 'AIFA bantu orang ramai menyemak fakta dengan lebih pantas',
+      text: 'Pembantu AIFA menjawab soalan tentang dakwaan tular dan memandu pengguna kepada semakan rasmi.',
+      image: withBase('/images/carousel/human-aifa-assistant.jpg'),
+      alt: 'Wanita tersenyum sambil menunjukkan telefon pintar',
+    },
+    {
+      tag: 'Program',
+      title: 'Program celik maklumat bersama warga emas',
+      text: 'Sesi bersemuka membimbing warga emas mengenal pasti mesej palsu sebelum dikongsi dalam kumpulan keluarga.',
+      image: withBase('/images/carousel/human-community-senior.jpg'),
+      alt: 'Lelaki warga emas dan wanita muda memegang tablet bersama',
+    },
+  ],
+  gallery: [
+    { size: 'wide', caption: 'Semak dahulu, sebelum berkongsi', image: withBase('/images/carousel/human-group-sharing.jpg'), alt: 'Dua orang ketawa sambil melihat telefon' },
+    { size: 'tall', caption: 'Sesi dialog komuniti', image: post('sebenarnya-fc-community-lounge.jpg'), alt: 'Wanita bertudung dan lelaki warga emas berbual di ruang rehat' },
+    { size: 'tall', caption: 'Perkongsian bersama warga emas', image: post('sebenarnya-fc-senior-dialogue.jpg'), alt: 'Lelaki warga emas berkongsi pandangan bersama dua orang muda' },
+    { size: 'wide', caption: 'Kempen kesedaran penipuan dalam talian', image: withBase('/images/carousel/human-scam-alert.jpg'), alt: 'Lelaki memegang telefon pintar dengan latar oren' },
+    { size: 'tall', caption: 'Bual santai di kopitiam', image: post('sebenarnya-fc-cafe-talk.jpg'), alt: 'Lelaki tersenyum melihat telefon rakan di meja kopitiam' },
+    { size: 'tall', caption: 'Celik digital setiap hari', image: post('sebenarnya-fc-digital-desk.jpg'), alt: 'Telefon, pengecas dan cawan di atas meja' },
+  ],
+};
+
+/* Logo downloads, a section on the About Us page (components/LogoKit.js) */
 // `src` is the preview, `file` is what gets downloaded, `filename` is the name it saves as.
 // icon.png is really a WebP file, so the icon downloads from icon-download.png (a true PNG copy).
 export const logoPage = {
@@ -309,6 +356,7 @@ const agencyLogo = (name) => withBase(`/images/authors/agency-${name}.webp`);
 // `status` = card tag (palsu / makluman / benar / waspada)
 // `categories` = filter-bar ids this article also appears under
 // `date` = YYYY-MM-DD
+// `views` = view count, used by the "Paling popular" sort (placeholder figures until real analytics are wired up)
 // `slug` = page address (/article/<slug>); `lead` + `explanation` = article body
 // optional `actions` = [{ title, text }] to replace the default "Apa Yang Perlu Anda Buat" list
 export const articles = [
@@ -322,6 +370,7 @@ export const articles = [
     status: 'palsu',
     categories: ['jenayah', 'kepenggunaan'],
     date: '2026-11-09',
+    views: 15200,
     agency: { name: agency.mcmc, image: agencyLogo('mcmc') },
   },
   {
@@ -334,6 +383,7 @@ export const articles = [
     status: 'waspada',
     categories: ['bencana'],
     date: '2026-11-05',
+    views: 11300,
     agency: { name: agency.met, image: agencyLogo('met') },
   },
   {
@@ -346,6 +396,7 @@ export const articles = [
     status: 'benar',
     categories: ['pendidikan'],
     date: '2026-10-30',
+    views: 6200,
     agency: { name: agency.kpm, image: agencyLogo('kpm') },
   },
   {
@@ -358,6 +409,7 @@ export const articles = [
     status: 'palsu',
     categories: ['kesihatan'],
     date: '2026-10-28',
+    views: 8700,
     agency: { name: 'KKM (Kementerian Kesihatan Malaysia)', image: agencyLogo('kkm') },
   },
   {
@@ -370,6 +422,7 @@ export const articles = [
     status: 'makluman',
     categories: ['pengangkutan'],
     date: '2026-10-22',
+    views: 18400,
     agency: { name: agency.jpj, image: agencyLogo('jpj') },
   },
   {
@@ -382,6 +435,7 @@ export const articles = [
     status: 'palsu',
     categories: ['ekonomi', 'kepenggunaan'],
     date: '2026-10-14',
+    views: 12900,
     agency: { name: agency.kpdn, image: agencyLogo('kpdn') },
   },
   {
@@ -394,6 +448,7 @@ export const articles = [
     status: 'benar',
     categories: ['urus-tadbir'],
     date: '2026-09-20',
+    views: 5100,
     agency: { name: agency.jpa, image: agencyLogo('jpa') },
   },
   {
@@ -406,6 +461,7 @@ export const articles = [
     status: 'waspada',
     categories: ['keselamatan', 'jenayah'],
     date: '2026-08-12',
+    views: 7400,
     agency: { name: agency.pdrm, image: agencyLogo('pdrm') },
   },
   {
@@ -418,6 +474,7 @@ export const articles = [
     status: 'palsu',
     categories: ['integriti-pilihan-raya', 'urus-tadbir'],
     date: '2026-06-03',
+    views: 3900,
     agency: { name: agency.kkmm, image: agencyLogo('kkmm') },
   },
   {
@@ -430,6 +487,7 @@ export const articles = [
     status: 'benar',
     categories: ['agama'],
     date: '2026-03-18',
+    views: 2600,
     agency: { name: 'JAPEN (Jabatan Penerangan Malaysia)', image: agencyLogo('japen') },
   },
   {
@@ -442,6 +500,7 @@ export const articles = [
     status: 'palsu',
     categories: ['bencana', 'keselamatan'],
     date: '2026-11-07',
+    views: 9800,
     agency: { name: agency.jbpm, image: agencyLogo('bomba') },
   },
   {
@@ -454,6 +513,7 @@ export const articles = [
     status: 'makluman',
     categories: ['kesihatan', 'kepenggunaan'],
     date: '2026-07-15',
+    views: 1800,
     agency: { name: 'KKM (Kementerian Kesihatan Malaysia)', image: agencyLogo('kkm') },
   },
 ];
