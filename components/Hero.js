@@ -39,8 +39,8 @@ export default function Hero() {
             <form className="pill-form claim-form" role="search" onSubmit={handleSearch}>
               <input
                 type="text"
-                placeholder="Cari dakwaan, topik atau kata kunci..."
-                aria-label="Cari dakwaan, topik atau kata kunci"
+                placeholder="Semak dakwaan, topik atau kata kunci..."
+                aria-label="Semak dakwaan, topik atau kata kunci..."
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? 'claim-error' : undefined}
                 value={query}
