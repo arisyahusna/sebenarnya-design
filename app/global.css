@@ -2646,28 +2646,70 @@ input::placeholder { color: var(--text); }
   gap: var(--space-8) var(--grid-gap);
 }
 
-.article-card .thumb { margin-bottom: var(--space-4); }
+/* Image + share button; the whole block lifts on hover so the button moves with the image */
+.article-media {
+  position: relative;
+  margin-bottom: var(--space-3);
+  transition: transform .3s ease;
+}
+
+.article-media:hover { transform: translateY(-3px); }
+
+.article-card .thumb { margin-bottom: 0; }
+.article-card .thumb:hover { transform: none; }
 .article-card .card-body { padding-right: var(--space-3); }
-.article-card .card-title { font-size: var(--fs-h4); }
+.article-card .card-title { margin-top: var(--space-2); font-size: var(--fs-h4); }
 .article-card .card-avatar { pointer-events: auto; }
 
-.article-status {
+/* Keep an open share menu above the neighbouring cards */
+.article-card:has(.share-menu) { position: relative; z-index: 5; }
+
+.article-media > .share {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 12px;
-  left: 12px;
+  right: 12px;
+}
+
+.share--compact .share-btn {
+  height: 28px;
+  padding: 0 var(--space-3);
+  font-size: var(--fs-caption);
+  border-color: transparent;
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: blur(10px);
+}
+
+.share--compact .share-btn:hover { background-color: var(--white); }
+.share--compact .share-btn svg { width: 13px; height: 13px; }
+
+/* Card is narrow: open the menu from the button's right edge instead of centred */
+.share--compact .share-menu {
+  right: 0;
+  left: auto;
+  min-width: 160px;
+  transform: none;
+}
+
+/* Verdict chip + date, under the image */
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+.article-status {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  padding: var(--space-1) var(--space-3);
+  padding: var(--space-1) var(--space-2);
   font-size: var(--fs-caption);
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.2;
   color: var(--text);
   border-radius: 100px;
-  background: rgba(255, 255, 255, .9);
-  backdrop-filter: blur(10px);
-  pointer-events: none;
+  background: var(--tag-bg);
 }
 
 .article-status i {
@@ -2677,8 +2719,7 @@ input::placeholder { color: var(--text); }
 }
 
 .article-date {
-  margin-top: var(--space-2);
-  font-size: var(--fs-small);
+  font-size: var(--fs-caption);
   opacity: .6;
 }
 
@@ -2705,7 +2746,15 @@ input::placeholder { color: var(--text); }
 
 @media (max-width: 480px) {
   .article-grid { grid-template-columns: repeat(2, 1fr); }
-  .article-status { top: 8px; left: 8px; padding: var(--space-1) var(--space-2); }
+
+  /* Icon-only share pill on small cards (the button keeps its aria-label) */
+  .article-media > .share { top: 8px; right: 8px; }
+  .share--compact .share-btn { width: 28px; padding: 0; justify-content: center; }
+  .share--compact .share-label { display: none; }
+}
+
+@media (max-width: 1280px) {
+  .article-media:hover { transform: none; }
 }
 
 /* ==========================================================================

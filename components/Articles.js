@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { articles, articleStatus } from '@/data/content';
 import { matchesQuery } from '@/lib/searchArticles';
 import { articleHref, formatDate } from '@/lib/articles';
+import ShareButton from './ShareButton';
 
 const DATE_OPTIONS = [
   { id: 'all', label: 'Semua tarikh' },
@@ -237,24 +238,31 @@ function ArticleCard({ article }) {
 
   return (
     <article className="card article-card">
-      <div className="thumb">
-        <Link href={href} aria-label={article.title}>
-          <img src={article.image} alt={article.alt} loading="lazy" />
-        </Link>
-        <span className="article-status">
-          <i style={{ background: status.color }} />
-          {status.label}
-        </span>
-        <div className="card-avatar" title={article.agency.name}>
-          <img src={article.agency.image} alt={article.agency.name} loading="lazy" />
+      {/* Image: agency logo bottom-left, share top-right (outside .thumb so its menu isn't clipped) */}
+      <div className="article-media">
+        <div className="thumb">
+          <Link href={href} aria-label={article.title}>
+            <img src={article.image} alt={article.alt} loading="lazy" />
+          </Link>
+          <div className="card-avatar" title={article.agency.name}>
+            <img src={article.agency.image} alt={article.agency.name} loading="lazy" />
+          </div>
         </div>
+        <ShareButton title={article.title} path={href} compact />
       </div>
 
+      {/* Verdict + date, then title */}
       <div className="card-body">
+        <div className="article-meta">
+          <span className="article-status">
+            <i style={{ background: status.color }} />
+            {status.label}
+          </span>
+          <time className="article-date" dateTime={article.date}>{formatDate(article.date)}</time>
+        </div>
         <h2 className="card-title">
           <Link href={href}>{article.title}</Link>
         </h2>
-        <time className="article-date" dateTime={article.date}>{formatDate(article.date)}</time>
       </div>
     </article>
   );

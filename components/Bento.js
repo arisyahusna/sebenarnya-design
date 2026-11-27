@@ -11,18 +11,13 @@ export default function Bento() {
       <div className="bento-row top">
         <div className="bento-card dots">
           <div>
-            <div className="badge">
-              <span>Geneva &bull; WSIS Pertubuhan Bangsa-Bangsa Bersatu</span>
-            </div>
             <h3 className="headline">
-              <span className="headline-lead">Pengiktirafan Tertinggi</span>
-              <span className="headline-big">Juara Dunia</span>
-              <span className="headline-tail">dalam Kepercayaan Digital &amp; Semakan Fakta Awam</span>
+              <span className="headline-tail">Sebenarnya.my Diiktiraf di</span>
+              <span className="headline-big"> WSIS Prizes 2026 </span>
             </h3>
             <p className="lead">
-              Apabila khabar angin tular tersebar pantas, fakta yang sahih mesti bergerak lebih pantas. Sebenarnya.my
-              meraih penghormatan antarabangsa tertinggi di Anugerah WSIS PBB di Geneva — diiktiraf sebagai perisai utama
-              Malaysia yang melindungi <strong>33 juta rakyat</strong> bersama <strong>lebih 20 agensi persekutuan</strong>.
+             Sebenarnya.my, portal semakan fakta rasmi Malaysia yang dibangunkan oleh MCMC, telah menerima pengiktirafan antarabangsa sebagai Champion Project di WSIS Prizes 2026 yang berlangsung di Geneva, Switzerland.
+Pengiktirafan ini mencerminkan komitmen berterusan MCMC dalam memperkukuh kepercayaan digital melalui penyampaian maklumat sahih, semakan fakta yang berwibawa serta kerjasama strategik dengan agensi kerajaan bagi membendung penyebaran maklumat palsu.
             </p>
           </div>
           <div>
@@ -37,6 +32,7 @@ export default function Bento() {
           <img src={withBase('/images/bento/wsis-prize-award.webp')} alt="Trofi pemenang Anugerah WSIS - Geneva, Switzerland" className="bento-img" loading="lazy" />
         </div>
       </div>
+      
     </section>
   );
 }

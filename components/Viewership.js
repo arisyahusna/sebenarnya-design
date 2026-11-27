@@ -62,8 +62,8 @@ export default function Viewership() {
 
         <div className="viewership-main">
           <p className="viewership-lead" id="viewership-lead">
-            Sebenarnya.my membantu rakyat Malaysia menyemak berita tular sebelum dikongsi. Setiap semakan merujuk
-            kenyataan rasmi agensi kerajaan, supaya maklumat yang sampai kepada anda tepat, jelas dan boleh dipercayai.
+           <strong>Mengapa Sebenarnya.my Pilihan Rakyat Malaysia?</strong><br></br>
+          Menjadi platform semakan fakta yang dipercayai dan menjadi rujukan utama masyarakat Malaysia dalam mendapatkan maklumat yang sahih dan tepat.
           </p>
 
           <dl className="viewership-stats">

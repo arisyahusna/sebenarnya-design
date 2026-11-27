@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { withBase } from '@/lib/basePath';
 
 // Share links; {url} and {text} are filled in when the menu opens
 const TARGETS = [
@@ -10,8 +11,10 @@ const TARGETS = [
   { label: 'Telegram', href: 'https://t.me/share/url?url={url}&text={text}' },
 ];
 
-// "Kongsi" button: uses the phone's share sheet when there is one, otherwise a menu
-export default function ShareButton({ title }) {
+// "Kongsi" button: uses the phone's share sheet when there is one, otherwise a menu.
+// `path` shares that page (e.g. an article card) instead of the current one;
+// `compact` is the small pill that sits on a card image.
+export default function ShareButton({ title, path, compact = false }) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [url, setUrl] = useState('');
@@ -31,7 +34,7 @@ export default function ShareButton({ title }) {
   }, [open]);
 
   const share = async () => {
-    const pageUrl = window.location.href;
+    const pageUrl = path ? new URL(withBase(path), window.location.origin).href : window.location.href;
     if (navigator.share) {
       try {
         await navigator.share({ title, url: pageUrl });
@@ -57,12 +60,19 @@ export default function ShareButton({ title }) {
   const fill = (href) => href.replace('{url}', encodeURIComponent(url)).replace('{text}', encodeURIComponent(title));
 
   return (
-    <div className="share" ref={wrapRef}>
-      <button type="button" className="share-btn" aria-expanded={open} aria-haspopup="true" onClick={share}>
+    <div className={compact ? 'share share--compact' : 'share'} ref={wrapRef}>
+      <button
+        type="button"
+        className="share-btn"
+        aria-label={compact ? `Kongsi: ${title}` : undefined}
+        aria-expanded={open}
+        aria-haspopup="true"
+        onClick={share}
+      >
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M10 13V3M6 6.5L10 2.5l4 4M4 10v6.5h12V10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        Kongsi
+        <span className="share-label">Kongsi</span>
       </button>
 
       {open && (

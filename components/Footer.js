@@ -14,7 +14,7 @@ export default function Footer() {
               <Logo />
             </div>
             <p className="footer-text">
-              Sebenarnya.my membantu orang ramai mendapatkan maklumat sahih dan maklum balas rasmi, menyemak dakwaan yang tular serta mengikuti berita dan perkembangan terkini.
+             Rujukan utama anda untuk semakan fakta dan maklumat yang sahih.
             </p>
           </div>
 

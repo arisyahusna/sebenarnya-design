@@ -19,7 +19,7 @@ export default function Hero() {
       return;
     }
     if (!searchArticles(q).length) {
-      setError(`Tiada semakan fakta dijumpai untuk “${q}”. Cuba kata kunci lain.`);
+      setError(`Tiada semakan fakta dijumpai untuk “${q}”. Cuba kata kunci lain atau hantarkan kami laporan melalui Salur Kepada Kami.`);
       return;
     }
     router.push(`/article?q=${encodeURIComponent(q)}`);
