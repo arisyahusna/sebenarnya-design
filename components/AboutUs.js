@@ -4,7 +4,7 @@ import LogoKit from './LogoKit';
 
 const pad = (n) => String(n).padStart(2, '0');
 
-// About us page content: Hero, (Who We Are), What We Do, How It Works, News and Gallery, Logo downloads
+// About us page content: Hero, (Who We Are), What We Do, How It Works, News and Gallery, Logo downloads + Terms & Privacy links
 export default function AboutUs() {
   return (
     <>
@@ -19,7 +19,7 @@ export default function AboutUs() {
       {/* News and gallery (anchor: /about-us/#berita-galeri) */}
       <NewsGallery />
 
-      {/* Logo and icon downloads (anchor: /about-us/#logo) */}
+      {/* Logo and icon downloads + terms/privacy links (anchors: /about-us/#logo, #terma-privasi) */}
       <LogoKit />
     </>
   );

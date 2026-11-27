@@ -248,14 +248,14 @@ export const newsGallery = {
       tag: 'Anugerah',
       title: 'Sebenarnya.my diiktiraf di Anugerah WSIS PBB, Geneva',
       text: 'Pengiktirafan antarabangsa tertinggi dalam kepercayaan digital dan semakan fakta awam, bersama lebih 20 agensi persekutuan.',
-      image: withBase('/images/bento/wsis-prize-award.webp'),
+      image: withBase('/images/wsis/PNG 5.jpeg'),
       alt: 'Trofi pemenang Anugerah WSIS di Geneva, Switzerland',
     },
     {
       tag: 'Inisiatif',
       title: 'AIFA bantu orang ramai menyemak fakta dengan lebih pantas',
       text: 'Pembantu AIFA menjawab soalan tentang dakwaan tular dan memandu pengguna kepada semakan rasmi.',
-      image: withBase('/images/carousel/human-aifa-assistant.jpg'),
+      image: withBase('/images/wsis/aifa.jpg'),
       alt: 'Wanita tersenyum sambil menunjukkan telefon pintar',
     },
     {
@@ -289,19 +289,109 @@ export const logoPage = {
       src: withBase('/images/logo/logo.png'),
       file: withBase('/images/logo/logo.png'),
       filename: 'sebenarnya-logo.png',
+      format: 'PNG',
       width: 356,
       height: 107,
       meta: 'PNG · 356 × 107 px · 37 KB',
     },
     {
       name: 'Ikon',
-      text: 'Ikon segi empat untuk ruang kecil seperti gambar profil dan ikon aplikasi.',
+      text: 'Ikon segi empat sama untuk ruang kecil seperti gambar profil dan ikon aplikasi.',
       src: withBase('/images/logo/icon-download.png'),
       file: withBase('/images/logo/icon-download.png'),
       filename: 'sebenarnya-ikon.png',
+      format: 'PNG',
       width: 134,
       height: 134,
       meta: 'PNG · 134 × 134 px · 20 KB',
+    },
+  ],
+};
+
+/* Terms & conditions and privacy policy */
+// The card under the logo downloads (components/LogoKit.js) shows `title` + `intro` and links to each document.
+// Each entry in `sections` is a full page (components/LegalDoc.js) at its `href` (app/terms, app/privacy).
+// `updated` = YYYY-MM-DD, shown as "Kemas kini terakhir". Draft wording: have it reviewed by MCMC before going live.
+export const legalPage = {
+  title: 'Terma dan Syarat & Dasar Privasi',
+  intro: 'Sila rujuk dokumen berikut untuk maklumat lanjut mengenai penggunaan laman web dan privasi anda.',
+  updated: '2026-11-27',
+  sections: [
+    {
+      id: 'terma-syarat',
+      href: '/terms/',
+      title: 'Terma dan Syarat',
+      summary: 'Syarat menggunakan portal, berkongsi kandungan dan menggunakan logo Sebenarnya.my.',
+      items: [
+        {
+          title: 'Penerimaan terma',
+          text: 'Dengan mengakses dan menggunakan portal Sebenarnya.my, anda bersetuju untuk mematuhi terma dan syarat ini. Jika anda tidak bersetuju, sila hentikan penggunaan portal.',
+        },
+        {
+          title: 'Tujuan portal',
+          text: 'Sebenarnya.my ialah portal semakan fakta yang dikendalikan oleh MCMC untuk menyemak dan menjelaskan maklumat yang tular. Kandungan disediakan sebagai rujukan umum dan tidak menggantikan kenyataan rasmi agensi berkaitan atau nasihat profesional.',
+        },
+        {
+          title: 'Penggunaan kandungan',
+          text: 'Anda boleh berkongsi artikel dan pautan Sebenarnya.my untuk tujuan bukan komersial dengan menyatakan Sebenarnya.my sebagai sumber. Kandungan tidak boleh diubah suai sehingga mengelirukan maksud asalnya.',
+        },
+        {
+          title: 'Penggunaan logo dan ikon',
+          text: 'Logo dan ikon yang dimuat turun daripada portal ini hanya boleh digunakan untuk merujuk kepada Sebenarnya.my dalam bahan media, pembentangan dan hebahan. Jangan ubah warna, bentuk atau nisbahnya, dan jangan gunakannya untuk menunjukkan sokongan atau kerjasama rasmi tanpa kebenaran bertulis.',
+        },
+        {
+          title: 'Maklumat yang disalurkan',
+          text: 'Pastikan maklumat yang anda salurkan melalui borang aduan atau AIFA adalah benar setakat pengetahuan anda. Jangan hantar kandungan yang menyalahi undang-undang, berunsur fitnah atau mengandungi maklumat peribadi orang lain tanpa kebenaran.',
+        },
+        {
+          title: 'Pautan luar',
+          text: 'Portal ini mungkin mengandungi pautan ke laman web pihak ketiga. Kami tidak bertanggungjawab terhadap kandungan atau amalan privasi laman tersebut.',
+        },
+        {
+          title: 'Penafian',
+          text: 'Kami berusaha memastikan maklumat adalah tepat dan terkini, namun tidak menjamin portal bebas daripada ralat atau gangguan. Kami tidak bertanggungjawab atas sebarang kerugian akibat penggunaan maklumat di portal ini.',
+        },
+        {
+          title: 'Perubahan terma',
+          text: 'Terma ini boleh dikemas kini dari semasa ke semasa. Penggunaan berterusan selepas sesuatu perubahan bermakna anda menerima terma yang dikemas kini. Terma ini ditadbir oleh undang-undang Malaysia.',
+        },
+      ],
+    },
+    {
+      id: 'dasar-privasi',
+      href: '/privacy/',
+      title: 'Dasar Privasi',
+      summary: 'Maklumat yang kami kumpul, cara ia digunakan dan hak anda terhadapnya.',
+      items: [
+        {
+          title: 'Maklumat yang kami kumpul',
+          text: 'Maklumat yang anda berikan sendiri, seperti kandungan aduan, pautan, tangkap layar, nama dan e-mel jika anda mengisinya, serta data teknikal asas seperti jenis peranti, pelayar dan halaman yang dilawati.',
+        },
+        {
+          title: 'Cara maklumat digunakan',
+          text: 'Untuk menyemak dan menjawab aduan, menghubungi anda jika penjelasan lanjut diperlukan, menambah baik portal, dan menyediakan statistik penggunaan secara agregat.',
+        },
+        {
+          title: 'Perkongsian maklumat',
+          text: 'Maklumat aduan boleh dikongsi dengan agensi kerajaan berkaitan semata-mata untuk tujuan semakan fakta. Kami tidak menjual atau menyewakan maklumat peribadi anda kepada pihak ketiga.',
+        },
+        {
+          title: 'Kuki',
+          text: 'Portal ini mungkin menggunakan kuki untuk mengingati pilihan anda, seperti bahasa, dan memahami cara portal digunakan. Anda boleh menyekat kuki melalui tetapan pelayar, tetapi sesetengah fungsi mungkin tidak berfungsi sepenuhnya.',
+        },
+        {
+          title: 'Keselamatan data',
+          text: 'Kami mengambil langkah keselamatan yang munasabah untuk melindungi maklumat anda daripada akses, pendedahan atau perubahan tanpa kebenaran. Kami tidak akan sekali-kali meminta kata laluan, nombor PIN atau butiran perbankan anda.',
+        },
+        {
+          title: 'Tempoh penyimpanan',
+          text: 'Maklumat disimpan selagi diperlukan untuk tujuan ia dikumpul, atau selama tempoh yang dikehendaki oleh undang-undang.',
+        },
+        {
+          title: 'Hak anda',
+          text: 'Anda boleh meminta untuk mengakses, membetulkan atau memadam maklumat peribadi anda dengan menghubungi kami melalui saluran rasmi Sebenarnya.my.',
+        },
+      ],
     },
   ],
 };

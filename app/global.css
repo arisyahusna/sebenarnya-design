@@ -3947,7 +3947,8 @@ input::placeholder { color: var(--text); }
 
 /* ==========================================================================
    Logo page (components/LogoKit.js)
-   Title uses the shared .about-title. One card per file: preview on top, info + download below.
+   Title uses the shared .about-title. One card per file: image, heading, description,
+   file spec pill and download button, stacked. Then a card linking to the terms and privacy pages.
    ========================================================================== */
 .logo-kit {
   padding-top: 0;
@@ -3970,20 +3971,27 @@ input::placeholder { color: var(--text); }
   gap: var(--grid-gap);
 }
 
-.logo-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.logo-card,
+.legal-card {
+  box-sizing: border-box;
+  padding: var(--space-8);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 
+.logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Same height in both cards so the headings line up */
 .logo-card-preview {
   display: grid;
   place-items: center;
-  aspect-ratio: 16 / 7;
-  padding: var(--card-pad);
-  background-color: var(--tag-bg);
+  width: 100%;
+  height: clamp(140px, 14vw, 200px);
+  margin-bottom: var(--space-6);
 }
 
 /* Shown at native size or smaller, so the previews stay sharp */
@@ -3992,59 +4000,164 @@ input::placeholder { color: var(--text); }
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 100%; /* shrinks to fit the shorter box on narrow screens */
+  max-height: 100%;
 }
 
-.logo-card-info {
-  display: flex;
-  flex: 1;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-6);
-  padding: var(--card-pad);
-}
-
-.logo-card h3 {
-  margin: 0 0 var(--space-3);
-  font-size: var(--fs-h3);
-  font-weight: 600;
+.logo-card h3,
+.legal-card h3 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-h2);
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -.02em;
 }
 
-.logo-card p {
-  max-width: 42ch;
+.logo-card p,
+.legal-card p {
   margin: 0;
   font-size: var(--fs-body);
-  line-height: 1.45;
-  opacity: var(--fade);
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
+/* File spec pill */
 .logo-card .logo-card-meta {
-  margin-top: var(--space-3);
+  margin: var(--space-4) 0 var(--space-6);
+  padding: var(--space-1) var(--space-3);
   font-size: var(--fs-small);
   font-variant-numeric: tabular-nums;
-  opacity: .6;
+  border: 1px solid var(--line);
+  border-radius: 100px;
 }
 
+/* margin-top: auto keeps both buttons on one line when the descriptions differ in length */
 .logo-card-btn {
   display: inline-flex;
-  flex: 0 0 auto;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
+  margin-top: auto;
 }
 
-@media (max-width: 1024px) {
-  .logo-card-info { flex-direction: column; align-items: flex-start; }
+/* Terms & privacy card, full width under the logo cards */
+.legal-card { margin-top: var(--grid-gap); }
+
+.legal-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-8);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
 }
+
+.legal-card-links a {
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness .15s ease;
+}
+
+.legal-card-links a:hover { text-decoration-thickness: 2px; }
+
+.legal-card-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
 @media (max-width: 768px) {
   .logo-kit-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
-  .logo-card { border-radius: 20px; }
+  .logo-card,
+  .legal-card { padding: var(--space-6); border-radius: 20px; }
   .logo-card-btn { width: 100%; justify-content: center; }
+}
+
+/* ==========================================================================
+   Terms and privacy pages (app/terms, app/privacy, components/LegalDoc.js)
+   Narrow reading column; back link reuses .post-back.
+   ========================================================================== */
+.legal-page {
+  box-sizing: border-box;
+  max-width: calc(760px + 2 * var(--side));
+  padding-top: var(--space-8);
+  padding-bottom: var(--section-y);
+}
+
+.legal-page-head {
+  margin-bottom: var(--space-12);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-page-head h1 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: var(--letter-spacing);
+}
+
+.legal-page-lead {
+  margin: 0;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  opacity: var(--fade);
+}
+
+.legal-page-updated {
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-small);
+  opacity: .6;
+}
+
+/* Numbered clauses */
+.legal-clauses {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: clause;
+}
+
+.legal-clauses li { counter-increment: clause; }
+
+.legal-clauses h2 {
+  display: flex;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.legal-clauses h2::before {
+  content: counter(clause, decimal-leading-zero);
+  font-variant-numeric: tabular-nums;
+  opacity: .45;
+}
+
+.legal-clauses p {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  text-wrap: pretty;
+  opacity: var(--fade);
+}
+
+.legal-page-also {
+  margin: var(--space-12) 0 0;
+  padding-top: var(--space-6);
+  font-size: var(--fs-body);
+  border-top: 1px solid var(--line);
+}
+
+.legal-page-also a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ==========================================================================

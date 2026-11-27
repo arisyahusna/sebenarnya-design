@@ -25,6 +25,7 @@ const blocks = [
   ['.logo-kit-intro', 0.08],
   ['.logo-card:nth-child(1)', 0.14],
   ['.logo-card:nth-child(2)', 0.22],
+  ['.legal-card', 0.3],
   // Stories
   ['.stories-head', 0],
   ['.stories-viewport', 0.08],
